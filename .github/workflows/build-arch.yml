@@ -17,7 +17,7 @@ jobs:
       - name: Update Pacman & Install Toolchain
         run: |
           pacman -Syu --noconfirm --needed \
-            base-devel git meson ninja rust cargo \
+            base-devel git meson ninja rust cargo clang \
             gtk4 libadwaita libshumate blueprint-compiler appstream wget unzip
 
       - name: Install Prebuilt TDLib & rlottie
