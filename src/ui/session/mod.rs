@@ -10,6 +10,7 @@ use std::sync::OnceLock;
 use adw::subclass::prelude::*;
 use glib::clone;
 use gtk::gdk;
+use gtk::gio;
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
@@ -103,6 +104,28 @@ mod imp {
                 }));
 
                 contacts.present();
+            });
+            klass.install_action("session.saved-messages", None, move |widget, _, _| {
+                if let Some(model) = widget.model() {
+                    widget.select_chat(model.me_().id());
+                }
+            });
+            klass.install_action("session.show-archived", None, move |widget, _, _| {
+                widget.imp().sidebar.show_archived_chats();
+            });
+            klass.install_action("session.show-sessions", None, move |widget, _, _| {
+                widget.imp().sidebar.show_sessions();
+            });
+            klass.install_action("session.toggle-dark-mode", None, move |_, _, _| {
+                let style_manager = adw::StyleManager::default();
+                let settings = gio::Settings::new(crate::config::APP_ID);
+                if style_manager.is_dark() {
+                    style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
+                    let _ = settings.set_string("color-scheme", "light");
+                } else {
+                    style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
+                    let _ = settings.set_string("color-scheme", "dark");
+                }
             });
 
             klass.add_binding_action(

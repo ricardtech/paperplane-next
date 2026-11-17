@@ -2,7 +2,12 @@ using Gtk 4.0;
 using Adw 1;
 
 template $PaplPreferencesWindow : Adw.PreferencesWindow {
+  title: _("Preferences");
+
   Adw.PreferencesPage {
+    title: _("General");
+    icon-name: "preferences-system-symbolic";
+
     Adw.PreferencesGroup {
       title: _("Color Scheme");
 
@@ -26,7 +31,90 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
     }
 
     Adw.PreferencesGroup {
-      title: _("Storage");
+      title: _("Chat Behavior");
+
+      Adw.ActionRow {
+        title: _("Send with Enter");
+        subtitle: _("Press Shift+Enter for a new line");
+
+        Switch {
+          active: true;
+          valign: center;
+        }
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Notifications");
+    icon-name: "preferences-system-notifications-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Chat Notifications");
+
+      Adw.ActionRow {
+        title: _("Private Chats");
+        subtitle: _("Show notifications for private messages");
+
+        Switch {
+          active: true;
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
+        title: _("Groups");
+        subtitle: _("Show notifications for group chats");
+
+        Switch {
+          active: true;
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
+        title: _("Channels");
+        subtitle: _("Show notifications for channel broadcasts");
+
+        Switch {
+          active: true;
+          valign: center;
+        }
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Privacy & Security");
+    icon-name: "security-high-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Security");
+
+      Adw.ActionRow {
+        title: _("Active Sessions");
+        subtitle: _("View and terminate other connected devices");
+
+        Button {
+          label: _("Manage");
+          action-name: "session.show-sessions";
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
+        title: _("Two-Step Verification (2FA)");
+        subtitle: _("Protect your account with an additional password");
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Storage");
+    icon-name: "drive-harddisk-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Storage Usage");
 
       Adw.ActionRow {
         title: _("Cache Size");
@@ -37,12 +125,30 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Button {
-        styles ["pill"]
+        styles ["pill", "suggested-action"]
 
         label: _("Clear Cache");
         action-name: "preferences.clear-cache";
         halign: center;
-        margin-top: 24;
+        margin-top: 18;
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Language");
+    icon-name: "preferences-desktop-locale-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Interface Language");
+
+      Adw.ActionRow {
+        title: _("Português (Brasil)");
+        subtitle: _("Idioma padrão da comunidade RicardTech");
+
+        Image {
+          icon-name: "object-select-symbolic";
+        }
       }
     }
   }

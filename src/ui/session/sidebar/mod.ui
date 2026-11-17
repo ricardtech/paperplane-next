@@ -4,21 +4,45 @@
   <menu id="primary_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Contacts</attribute>
+        <attribute name="label" translatable="yes">_Contas / Alternar Sessão</attribute>
+        <attribute name="action">session.show-sessions</attribute>
+        <attribute name="icon">avatar-default-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Chats Arquivados</attribute>
+        <attribute name="action">session.show-archived</attribute>
+        <attribute name="icon">folder-download-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Contatos</attribute>
         <attribute name="action">session.show-contacts</attribute>
+        <attribute name="icon">contact-new-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Mensagens Salvas</attribute>
+        <attribute name="action">session.saved-messages</attribute>
+        <attribute name="icon">bookmark-new-symbolic</attribute>
       </item>
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">session.show-preferences</attribute>
+        <attribute name="label" translatable="yes">_Alternar Modo Noturno</attribute>
+        <attribute name="action">session.toggle-dark-mode</attribute>
+        <attribute name="icon">weather-clear-night-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="label" translatable="yes">_Configurações</attribute>
+        <attribute name="action">session.show-preferences</attribute>
+        <attribute name="icon">emblem-system-symbolic</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Atalhos do Teclado</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About Paper Plane</attribute>
+        <attribute name="label" translatable="yes">_Sobre o PaperPlane Next</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>

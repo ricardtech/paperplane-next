@@ -43,6 +43,11 @@
   <url type="translate">https://hosted.weblate.org/engage/paper-plane</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="0.1.0" date="2026-11-17">
+      <description translatable="no">
+        <p>PaperPlane Next 0.1.0 - Community Revival Edition com tradução integral em Português Brasileiro (PT-BR) e menus estilo Telegram Desktop.</p>
+      </description>
+    </release>
     <release version="0.1.0~beta.5" date="2023-11-03">
       <description translatable="no">
         <p>This is the fifth beta release of Paper Plane 0.1.0 with new features and bug fixes:</p>

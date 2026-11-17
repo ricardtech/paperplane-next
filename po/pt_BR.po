@@ -1518,3 +1518,72 @@ msgstr "Nova sessão"
 
 #~ msgid "Enter the Encryption Key"
 #~ msgstr "Digite a chave de criptografia"
+
+msgid "General"
+msgstr "Geral"
+
+msgid "Chat Behavior"
+msgstr "Comportamento do Chat"
+
+msgid "Send with Enter"
+msgstr "Enviar com Enter"
+
+msgid "Press Shift+Enter for a new line"
+msgstr "Pressione Shift+Enter para quebrar a linha"
+
+msgid "Notifications"
+msgstr "Notificações"
+
+msgid "Chat Notifications"
+msgstr "Notificações de Conversas"
+
+msgid "Private Chats"
+msgstr "Conversas Privadas"
+
+msgid "Show notifications for private messages"
+msgstr "Exibir notificações para mensagens privadas"
+
+msgid "Groups"
+msgstr "Grupos"
+
+msgid "Show notifications for group chats"
+msgstr "Exibir notificações para mensagens em grupos"
+
+msgid "Channels"
+msgstr "Canais"
+
+msgid "Show notifications for channel broadcasts"
+msgstr "Exibir notificações para transmissões de canais"
+
+msgid "Privacy & Security"
+msgstr "Privacidade e Segurança"
+
+msgid "Security"
+msgstr "Segurança"
+
+msgid "Active Sessions"
+msgstr "Sessões Ativas"
+
+msgid "View and terminate other connected devices"
+msgstr "Ver e desconectar outros dispositivos conectados"
+
+msgid "Manage"
+msgstr "Gerenciar"
+
+msgid "Two-Step Verification (2FA)"
+msgstr "Verificação em Duas Etapas (2FA)"
+
+msgid "Protect your account with an additional password"
+msgstr "Proteja sua conta com uma senha adicional"
+
+msgid "Storage Usage"
+msgstr "Uso de Armazenamento"
+
+msgid "Interface Language"
+msgstr "Idioma da Interface"
+
+msgid "Português (Brasil)"
+msgstr "Português (Brasil)"
+
+msgid "Idioma padrão da comunidade RicardTech"
+msgstr "Idioma padrão da comunidade RicardTech"
