@@ -11,8 +11,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/alaxricardsilva/paperplane-next"><img src="https://img.shields.io/badge/GitHub-alaxricardsilva%2Fpaperplane--next-181717?logo=github" alt="GitHub Repo"/></a>
-  <a href="https://gitlab.com/alaxricard/paperplane-next"><img src="https://img.shields.io/badge/GitLab-alaxricard%2Fpaperplane--next-FC6D26?logo=gitlab" alt="GitLab Repo"/></a>
+  <a href="https://github.com/ricardtech/paperplane-next"><img src="https://img.shields.io/badge/GitHub-ricardtech%2Fpaperplane--next-181717?logo=github" alt="GitHub Repo"/></a>
+  <a href="https://gitlab.com/ricard-tech/paperplane-next"><img src="https://img.shields.io/badge/GitLab-ricard--tech%2Fpaperplane--next-FC6D26?logo=gitlab" alt="GitLab Repo"/></a>
   <a href="https://aur.archlinux.org/packages/paperplane-next-git"><img src="https://img.shields.io/badge/Arch_AUR-paperplane--next--git-1793D1?logo=arch-linux" alt="Arch AUR"/></a>
   <img src="https://img.shields.io/badge/Rust-1.80+-DEA584?logo=rust" alt="Rust"/>
   <img src="https://img.shields.io/badge/GTK4-Libadwaita-4A90D9?logo=gnome" alt="GTK4"/>
@@ -69,7 +69,7 @@ sudo pacman -S --needed git meson ninja rust cargo gtk4 libadwaita libshumate te
 #### Passo a passo:
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/alaxricardsilva/paperplane-next.git
+git clone https://github.com/ricardtech/paperplane-next.git
 cd paperplane-next
 
 # 2. Configure o build com o Meson

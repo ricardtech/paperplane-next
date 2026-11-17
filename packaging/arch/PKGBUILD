@@ -1,4 +1,4 @@
-# Maintainer: Alax Ricard <https://github.com/ricardtech>
+# Maintainer: RicardTech <https://github.com/ricardtech>
 # Contributor: Marco Melorio, Marcus Behrendt, Alisson Lauffer
 
 _pkgname=paper-plane
@@ -7,7 +7,7 @@ pkgver=0.1.0beta.5.r1.g861cfa7
 pkgrel=1
 pkgdesc='Cliente Telegram nativo, moderno e ultra-leve para Linux em Rust + GTK4 (Community Revival)'
 arch=('x86_64' 'aarch64')
-url='https://github.com/alaxricardsilva/paperplane-next'
+url='https://github.com/ricardtech/paperplane-next'
 license=('GPL3')
 depends=(
   'gtk4'
@@ -28,7 +28,7 @@ makedepends=(
 provides=('paper-plane' 'paperplane-next')
 conflicts=('paper-plane' 'paper-plane-git')
 
-source=("git+https://github.com/alaxricardsilva/paperplane-next.git")
+source=("git+https://github.com/ricardtech/paperplane-next.git")
 sha256sums=('SKIP')
 
 pkgver() {
