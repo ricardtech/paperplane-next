@@ -63,6 +63,7 @@ mod imp {
             obj.setup_gactions();
             obj.setup_accels();
             obj.load_color_scheme();
+            crate::tray::init_tray(&obj);
         }
     }
 
@@ -90,7 +91,7 @@ impl Application {
             .build()
     }
 
-    fn main_window(&self) -> ui::Window {
+    pub(crate) fn main_window(&self) -> ui::Window {
         self.imp().window.get().unwrap().upgrade().unwrap()
     }
 
@@ -156,22 +157,24 @@ impl Application {
     fn show_about_dialog(&self) {
         let about = adw::AboutWindow::builder()
             .transient_for(&self.main_window())
-            .application_name("Paper Plane")
+            .application_name("PaperPlane Next")
             .application_icon(config::APP_ID)
             .version(config::VERSION)
-            .website("https://github.com/paper-plane-developers/paper-plane")
-            .issue_url("https://github.com/paper-plane-developers/paper-plane/issues")
-            .support_url("https://t.me/paperplanechat")
-            .developer_name(gettext("Paper Plane developers"))
-            .copyright("© 2021–2023 Marco Melorio")
+            .website("https://github.com/ricardtech/paperplane-next")
+            .issue_url("https://github.com/ricardtech/paperplane-next/issues")
+            .support_url("https://repo.ricardtv.top")
+            .developer_name("RicardTech")
+            .copyright("© 2026 RicardTech & Comunidade PaperPlane")
             .license_type(gtk::License::Gpl30)
             .developers([
+                "Alax Ricard (RicardTech) https://github.com/ricardtech",
                 "Karol Lademan https://github.com/karl0d",
                 "Marco Melorio (orig. author) https://github.com/melix99",
                 "Marcus Behrendt https://github.com/marhkb",
                 "Yuri Izmer https://github.com/yuraiz",
             ])
             .designers([
+                "Alax Ricard https://github.com/ricardtech",
                 "Marco Melorio https://github.com/melix99",
                 "Yuri Izmer https://github.com/yuraiz",
             ])

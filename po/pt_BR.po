@@ -184,8 +184,8 @@ msgid ""
 "Portuguese and Polish translation have been updated, thanks to "
 "@jvlianodorneles and @karl0d."
 msgstr ""
-"As traduções em português e polonês foram atualizadas, obrigado a @"
-"jvlianodorneles e @karl0d."
+"As traduções em português e polonês foram atualizadas, obrigado a "
+"@jvlianodorneles e @karl0d."
 
 #: data/app.drey.PaperPlane.metainfo.xml.in.in:71
 msgid ""
@@ -209,11 +209,13 @@ msgstr "Sponsors"
 
 #: src/application.rs:191
 msgid ""
-"<span size=\"small\">Map data by                 <a href=\"https://www."
-"openstreetmap.org\">OpenStreetMap</a>                 and contributors</span>"
+"<span size=\"small\">Map data by                 <a href=\"https://"
+"www.openstreetmap.org\">OpenStreetMap</a>                 and contributors</"
+"span>"
 msgstr ""
-"<span size=\"small\">Dados de mapas do                 <a href=\"https://www."
-"openstreetmap.org\">OpenStreetMap</a>                 e colaboradores</span>"
+"<span size=\"small\">Dados de mapas do                 <a href=\"https://"
+"www.openstreetmap.org\">OpenStreetMap</a>                 e colaboradores</"
+"span>"
 
 #: src/application.rs:197
 msgid ""
@@ -222,10 +224,10 @@ msgid ""
 "Commons Open Database License </a> (ODbL) by the                 <a "
 "href=\"https://osmfoundation.org\">aOpenStreetMap Foundation</a> (OSMF)."
 msgstr ""
-"O OpenStreetMap® é um dado aberto, licenciado sob a                 <a href="
-"\"https://opendatacommons.org/licenses/odbl\">                Licença Open "
-"Data Commons Open Database </a> (ODbL) pela                 <a href=\"https"
-"://osmfoundation.org\">aOpenStreetMap Foundation</a> (OSMF)."
+"O OpenStreetMap® é um dado aberto, licenciado sob a                 <a "
+"href=\"https://opendatacommons.org/licenses/odbl\">                Licença "
+"Open Data Commons Open Database </a> (ODbL) pela                 <a "
+"href=\"https://osmfoundation.org\">aOpenStreetMap Foundation</a> (OSMF)."
 
 #: src/expressions.rs:20 src/ui/session/sidebar/search/item_row.rs:97
 #: src/ui/session/sidebar/search/mod.rs:182
@@ -1392,6 +1394,135 @@ msgstr "Servidor de _teste"
 msgid "New Session"
 msgstr "Nova sessão"
 
+msgid "General"
+msgstr "Geral"
+
+msgid "Chat Behavior"
+msgstr "Comportamento do Chat"
+
+msgid "Send with Enter"
+msgstr "Enviar com Enter"
+
+msgid "Press Shift+Enter for a new line"
+msgstr "Pressione Shift+Enter para quebrar a linha"
+
+msgid "Notifications"
+msgstr "Notificações"
+
+msgid "Chat Notifications"
+msgstr "Notificações de Conversas"
+
+msgid "Private Chats"
+msgstr "Conversas Privadas"
+
+msgid "Show notifications for private messages"
+msgstr "Exibir notificações para mensagens privadas"
+
+msgid "Groups"
+msgstr "Grupos"
+
+msgid "Show notifications for group chats"
+msgstr "Exibir notificações para mensagens em grupos"
+
+msgid "Channels"
+msgstr "Canais"
+
+msgid "Show notifications for channel broadcasts"
+msgstr "Exibir notificações para transmissões de canais"
+
+msgid "Privacy & Security"
+msgstr "Privacidade e Segurança"
+
+msgid "Security"
+msgstr "Segurança"
+
+msgid "Active Sessions"
+msgstr "Sessões Ativas"
+
+msgid "View and terminate other connected devices"
+msgstr "Ver e desconectar outros dispositivos conectados"
+
+msgid "Manage"
+msgstr "Gerenciar"
+
+msgid "Two-Step Verification (2FA)"
+msgstr "Verificação em Duas Etapas (2FA)"
+
+msgid "Protect your account with an additional password"
+msgstr "Proteja sua conta com uma senha adicional"
+
+msgid "Storage Usage"
+msgstr "Uso de Armazenamento"
+
+msgid "Interface Language"
+msgstr "Idioma da Interface"
+
+msgid "Português (Brasil)"
+msgstr "Português (Brasil)"
+
+msgid "Idioma padrão da comunidade RicardTech"
+msgstr "Idioma padrão da comunidade RicardTech"
+
+msgid "Proxy"
+msgstr "Proxy"
+
+msgid "Proxy Settings"
+msgstr "Configurações de Proxy"
+
+msgid "Use Proxy"
+msgstr "Usar Servidor Proxy"
+
+msgid "Connect through a proxy server"
+msgstr "Conectar através de um servidor proxy"
+
+msgid "Proxy Type"
+msgstr "Tipo de Proxy"
+
+msgid "Server / Host"
+msgstr "Servidor / Host"
+
+msgid "Port"
+msgstr "Porta"
+
+msgid "Secret / Password"
+msgstr "Segredo / Senha"
+
+msgid "System & Startup"
+msgstr "Sistema & Inicialização"
+
+msgid "Background Behavior"
+msgstr "Comportamento em Segundo Plano"
+
+msgid "Start with System"
+msgstr "Iniciar com o Sistema"
+
+msgid "Launch PaperPlane automatically on system boot"
+msgstr "Iniciar o PaperPlane automaticamente na inicialização do sistema"
+
+msgid "Close to Notification Area"
+msgstr "Fechar para a Área de Notificações"
+
+msgid "Keep running in the background when the window is closed"
+msgstr "Continuar executando em segundo plano quando a janela for fechada"
+
+msgid "All Chats"
+msgstr "Todas as Conversas"
+
+msgid "Archived Chats"
+msgstr "Chats Arquivados"
+
+msgid "Archive"
+msgstr "Arquivados"
+
+msgid "Preferences"
+msgstr "Configurações"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Select a chat to start messaging"
+msgstr "Selecione uma conversa para começar a conversar"
+
 #~ msgid "A Telegram client optimized for the GNOME desktop"
 #~ msgstr "Um cliente Telegram otimizado para o ambiente de trabalho GNOME"
 
@@ -1518,114 +1649,3 @@ msgstr "Nova sessão"
 
 #~ msgid "Enter the Encryption Key"
 #~ msgstr "Digite a chave de criptografia"
-
-msgid "General"
-msgstr "Geral"
-
-msgid "Chat Behavior"
-msgstr "Comportamento do Chat"
-
-msgid "Send with Enter"
-msgstr "Enviar com Enter"
-
-msgid "Press Shift+Enter for a new line"
-msgstr "Pressione Shift+Enter para quebrar a linha"
-
-msgid "Notifications"
-msgstr "Notificações"
-
-msgid "Chat Notifications"
-msgstr "Notificações de Conversas"
-
-msgid "Private Chats"
-msgstr "Conversas Privadas"
-
-msgid "Show notifications for private messages"
-msgstr "Exibir notificações para mensagens privadas"
-
-msgid "Groups"
-msgstr "Grupos"
-
-msgid "Show notifications for group chats"
-msgstr "Exibir notificações para mensagens em grupos"
-
-msgid "Channels"
-msgstr "Canais"
-
-msgid "Show notifications for channel broadcasts"
-msgstr "Exibir notificações para transmissões de canais"
-
-msgid "Privacy & Security"
-msgstr "Privacidade e Segurança"
-
-msgid "Security"
-msgstr "Segurança"
-
-msgid "Active Sessions"
-msgstr "Sessões Ativas"
-
-msgid "View and terminate other connected devices"
-msgstr "Ver e desconectar outros dispositivos conectados"
-
-msgid "Manage"
-msgstr "Gerenciar"
-
-msgid "Two-Step Verification (2FA)"
-msgstr "Verificação em Duas Etapas (2FA)"
-
-msgid "Protect your account with an additional password"
-msgstr "Proteja sua conta com uma senha adicional"
-
-msgid "Storage Usage"
-msgstr "Uso de Armazenamento"
-
-msgid "Interface Language"
-msgstr "Idioma da Interface"
-
-msgid "Português (Brasil)"
-msgstr "Português (Brasil)"
-
-msgid "Idioma padrão da comunidade RicardTech"
-msgstr "Idioma padrão da comunidade RicardTech"
-
-msgid "Proxy"
-msgstr "Proxy"
-
-msgid "Proxy Settings"
-msgstr "Configurações de Proxy"
-
-msgid "Use Proxy"
-msgstr "Usar Servidor Proxy"
-
-msgid "Connect through a proxy server"
-msgstr "Conectar através de um servidor proxy"
-
-msgid "Proxy Type"
-msgstr "Tipo de Proxy"
-
-msgid "Server / Host"
-msgstr "Servidor / Host"
-
-msgid "Port"
-msgstr "Porta"
-
-msgid "Secret / Password"
-msgstr "Segredo / Senha"
-
-msgid "System & Startup"
-msgstr "Sistema & Inicialização"
-
-msgid "Background Behavior"
-msgstr "Comportamento em Segundo Plano"
-
-msgid "Start with System"
-msgstr "Iniciar com o Sistema"
-
-msgid "Launch PaperPlane automatically on system boot"
-msgstr "Iniciar o PaperPlane automaticamente na inicialização do sistema"
-
-msgid "Close to Notification Area"
-msgstr "Fechar para a Área de Notificações"
-
-msgid "Keep running in the background when the window is closed"
-msgstr "Continuar executando em segundo plano quando a janela for fechada"

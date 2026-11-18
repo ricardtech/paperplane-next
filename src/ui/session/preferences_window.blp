@@ -2,17 +2,17 @@ using Gtk 4.0;
 using Adw 1;
 
 template $PaplPreferencesWindow : Adw.PreferencesWindow {
-  title: _("Preferences");
+  title: _("Configurações");
 
   Adw.PreferencesPage {
-    title: _("General");
+    title: _("Geral");
     icon-name: "preferences-system-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Color Scheme");
+      title: _("Esquema de cores");
 
       Adw.ActionRow {
-        title: _("Follow System Colors");
+        title: _("Seguir cores do sistema");
         activatable-widget: follow_system_colors_switch;
 
         Switch follow_system_colors_switch {
@@ -21,7 +21,7 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
-        title: _("Dark Theme");
+        title: _("Tema escuro");
         activatable-widget: dark_theme_switch;
 
         Switch dark_theme_switch {
@@ -31,11 +31,11 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
     }
 
     Adw.PreferencesGroup {
-      title: _("Chat Behavior");
+      title: _("Comportamento do Chat");
 
       Adw.ActionRow {
-        title: _("Send with Enter");
-        subtitle: _("Press Shift+Enter for a new line");
+        title: _("Enviar com Enter");
+        subtitle: _("Pressione Shift+Enter para uma nova linha");
 
         Switch {
           active: true;
@@ -46,15 +46,15 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
   }
 
   Adw.PreferencesPage {
-    title: _("Notifications");
+    title: _("Notificações");
     icon-name: "preferences-system-notifications-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Chat Notifications");
+      title: _("Notificações de Conversas");
 
       Adw.ActionRow {
-        title: _("Private Chats");
-        subtitle: _("Show notifications for private messages");
+        title: _("Conversas Privadas");
+        subtitle: _("Exibir notificações para mensagens privadas");
 
         Switch {
           active: true;
@@ -63,8 +63,8 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
-        title: _("Groups");
-        subtitle: _("Show notifications for group chats");
+        title: _("Grupos");
+        subtitle: _("Exibir notificações para chats em grupo");
 
         Switch {
           active: true;
@@ -73,8 +73,8 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
-        title: _("Channels");
-        subtitle: _("Show notifications for channel broadcasts");
+        title: _("Canais");
+        subtitle: _("Exibir notificações para transmissões de canais");
 
         Switch {
           active: true;
@@ -85,39 +85,39 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
   }
 
   Adw.PreferencesPage {
-    title: _("Privacy & Security");
+    title: _("Privacidade e Segurança");
     icon-name: "security-high-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Security");
+      title: _("Segurança");
 
       Adw.ActionRow {
-        title: _("Active Sessions");
-        subtitle: _("View and terminate other connected devices");
+        title: _("Sessões Ativas");
+        subtitle: _("Visualizar e desconectar outros aparelhos conectados");
 
         Button {
-          label: _("Manage");
+          label: _("Gerenciar");
           action-name: "session.show-sessions";
           valign: center;
         }
       }
 
       Adw.ActionRow {
-        title: _("Two-Step Verification (2FA)");
-        subtitle: _("Protect your account with an additional password");
+        title: _("Verificação em Duas Etapas (2FA)");
+        subtitle: _("Proteja sua conta com uma senha adicional");
       }
     }
   }
 
   Adw.PreferencesPage {
-    title: _("Storage");
+    title: _("Armazenamento");
     icon-name: "drive-harddisk-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Storage Usage");
+      title: _("Uso de Armazenamento");
 
       Adw.ActionRow {
-        title: _("Cache Size");
+        title: _("Tamanho do Cache");
 
         Label cache_size_label {
           styles ["dim-label"]
@@ -127,7 +127,7 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       Button {
         styles ["pill", "suggested-action"]
 
-        label: _("Clear Cache");
+        label: _("Limpar Cache");
         action-name: "preferences.clear-cache";
         halign: center;
         margin-top: 18;
@@ -136,19 +136,42 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
   }
 
   Adw.PreferencesPage {
-    title: _("Language");
+    title: _("Idioma");
     icon-name: "preferences-desktop-locale-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Interface Language");
+      title: _("Idioma da Interface");
 
-      Adw.ActionRow {
-        title: _("Português (Brasil)");
-        subtitle: _("Idioma padrão da comunidade RicardTech");
-
-        Image {
-          icon-name: "object-select-symbolic";
-        }
+      Adw.ComboRow {
+        title: _("Selecionar Idioma");
+        subtitle: _("Escolha o idioma preferido do aplicativo");
+        model: Gtk.StringList {
+          strings [
+            "Português (Brasil)",
+            "English (US)",
+            "Español",
+            "Français",
+            "Deutsch",
+            "Italiano",
+            "Русский",
+            "Türkçe",
+            "Polski",
+            "Nederlands",
+            "Català",
+            "Svenska",
+            "Suomi",
+            "Norsk Bokmål",
+            "Bahasa Indonesia",
+            "Українська",
+            "العربية",
+            "فارسی",
+            "עברית",
+            "中文 (简体)",
+            "Ελληνικά",
+            "Беларуская",
+            "Português (Portugal)"
+          ]
+        };
       }
     }
   }
@@ -158,11 +181,11 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
     icon-name: "network-server-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Proxy Settings");
+      title: _("Configurações de Proxy");
 
       Adw.ActionRow {
-        title: _("Use Proxy");
-        subtitle: _("Connect through a proxy server");
+        title: _("Usar Proxy");
+        subtitle: _("Conectar através de um servidor proxy");
 
         Switch {
           valign: center;
@@ -170,7 +193,7 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.ComboRow {
-        title: _("Proxy Type");
+        title: _("Tipo de Proxy");
         model: Gtk.StringList {
           strings [
             "MTProto",
@@ -181,29 +204,29 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.EntryRow {
-        title: _("Server / Host");
+        title: _("Servidor / Host");
       }
 
       Adw.EntryRow {
-        title: _("Port");
+        title: _("Porta");
       }
 
       Adw.PasswordEntryRow {
-        title: _("Secret / Password");
+        title: _("Segredo / Senha");
       }
     }
   }
 
   Adw.PreferencesPage {
-    title: _("System & Startup");
+    title: _("Sistema e Inicialização");
     icon-name: "preferences-system-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Background Behavior");
+      title: _("Execução em Segundo Plano");
 
       Adw.ActionRow {
-        title: _("Start with System");
-        subtitle: _("Launch PaperPlane automatically on system boot");
+        title: _("Iniciar com o Sistema");
+        subtitle: _("Iniciar o PaperPlane automaticamente no boot");
 
         Switch {
           active: true;
@@ -212,8 +235,8 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
-        title: _("Close to Notification Area");
-        subtitle: _("Keep running in the background when the window is closed");
+        title: _("Fechar para a Área de Notificação");
+        subtitle: _("Manter em execução na bandeja ao fechar a janela");
 
         Switch {
           active: true;

@@ -11,6 +11,7 @@ mod expressions;
 mod i18n;
 mod model;
 mod strings;
+mod tray;
 mod types;
 mod utils;
 
@@ -49,10 +50,12 @@ fn main() -> glib::ExitCode {
             gettextrs::setlocale(LocaleCategory::LcAll, "");
             gettextrs::bindtextdomain(config::GETTEXT_PACKAGE, config::LOCALEDIR)
                 .expect("Unable to bind the text domain");
+            gettextrs::bind_textdomain_codeset(config::GETTEXT_PACKAGE, "UTF-8")
+                .expect("Unable to set codeset");
             gettextrs::textdomain(config::GETTEXT_PACKAGE)
                 .expect("Unable to switch to the text domain");
 
-            glib::set_application_name("Paper Plane");
+            glib::set_application_name("PaperPlane Next");
 
             gio::resources_register(
                 &gio::Resource::load(config::RESOURCES_FILE)

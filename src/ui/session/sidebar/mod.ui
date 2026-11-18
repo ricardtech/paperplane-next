@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface>
+<interface domain="paper-plane">
 
   <menu id="primary_menu">
     <section>
@@ -155,7 +155,7 @@
                                                   <class name="caption"/>
                                                   <class name="dim-label"/>
                                                 </style>
-                                                <property name="label" translatable="yes">Archive</property>
+                                                <property name="label" translatable="yes">Arquivados</property>
                                                 <property name="ellipsize">end</property>
                                               </object>
                                             </child>
@@ -296,7 +296,7 @@
         <child>
           <object class="AdwNavigationPage">
             <property name="tag">archived-chats</property>
-            <property name="title" translatable="yes">Archived Chats</property>
+            <property name="title" translatable="yes">Chats Arquivados</property>
 
             <child>
               <object class="AdwToolbarView">

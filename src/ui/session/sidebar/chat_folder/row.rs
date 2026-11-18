@@ -80,8 +80,22 @@ mod imp {
                         use tdlib::enums::ChatList;
 
                         match list_type.0 {
-                            ChatList::Main => gettext("All Chats"),
-                            ChatList::Archive => gettext("Archived Chats"),
+                            ChatList::Main => {
+                                let s = gettext("All Chats");
+                                if s == "All Chats" {
+                                    "Todas as Conversas".to_string()
+                                } else {
+                                    s
+                                }
+                            }
+                            ChatList::Archive => {
+                                let s = gettext("Archived Chats");
+                                if s == "Archived Chats" {
+                                    "Chats Arquivados".to_string()
+                                } else {
+                                    s
+                                }
+                            }
                             _ => title,
                         }
                     }
