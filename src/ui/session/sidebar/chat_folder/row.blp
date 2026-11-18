@@ -1,5 +1,4 @@
 using Gtk 4.0;
-using Adw 1;
 
 template $PaplSidebarChatFolderRow {
   layout-manager: BinLayout {};
@@ -18,24 +17,23 @@ template $PaplSidebarChatFolderRow {
   }
 
   Box {
-    orientation: vertical;
-    spacing: 3;
+    orientation: horizontal;
+    spacing: 6;
+    margin-start: 12;
+    margin-end: 12;
+    margin-top: 8;
+    margin-bottom: 8;
+
+    Label title_label {
+      styles ["chat-folder-tab-title"]
+
+      justify: center;
+      wrap: false;
+    }
 
     $PaplSidebarChatFolderIcon icon {
       chat-list: bind template.chat-list;
-    }
-
-    Adw.Clamp {
-      maximum-size: 80;
-      tightening-threshold: 80;
-      
-      Label title_label {
-        styles ["caption"]
-
-        justify: center;
-        wrap: true;
-        wrap-mode: char;
-      }
+      valign: center;
     }
   }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface>
+<interface domain="paper-plane">
   <template class="PaplSidebarSearch" parent="GtkWidget">
     <property name="layout-manager">
       <object class="GtkBinLayout"/>
@@ -13,7 +13,7 @@
 
             <property name="title-widget">
               <object class="GtkSearchEntry" id="search_entry">
-                <property name="placeholder-text" translatable="yes">Search</property>
+                <property name="placeholder-text" translatable="yes">Pesquisar</property>
                 <signal name="search-changed" handler="search" swapped="true"/>
               </object>
             </property>
@@ -76,8 +76,8 @@
                 <property name="child">
                   <object class="AdwStatusPage">
                     <property name="icon-name">system-search-symbolic</property>
-                    <property name="title" translatable="yes">No Search Results</property>
-                    <property name="description" translatable="yes">Try a different search.</property>
+                    <property name="title" translatable="yes">Nenhum resultado encontrado</property>
+                    <property name="description" translatable="yes">Tente pesquisar por outro termo.</property>
                     <style>
                       <class name="compact"/>
                     </style>

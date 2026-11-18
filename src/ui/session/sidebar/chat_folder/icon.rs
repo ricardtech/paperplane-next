@@ -4,7 +4,6 @@ use glib::closure;
 use glib::Properties;
 use gtk::gdk;
 use gtk::glib;
-use gtk::gsk;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
@@ -131,48 +130,38 @@ mod imp {
 
     impl WidgetImpl for Icon {
         fn measure(&self, orientation: gtk::Orientation, for_size: i32) -> (i32, i32, i32, i32) {
-            let (min1, nat1, min_baseline1, nat_baseline1) =
-                self.icon.measure(orientation, for_size);
-            let (min2, nat2, min_baseline2, nat_baseline2) =
-                self.unread_mask_bin.measure(orientation, for_size);
-            let (min3, nat3, min_baseline3, nat_baseline3) =
+            let has_unread = self
+                .obj()
+                .chat_list()
+                .map(|cl| cl.unread_chat_count() > 0)
+                .unwrap_or(false);
+
+            if !has_unread {
+                return (0, 0, -1, -1);
+            }
+
+            let (min, nat, min_baseline, nat_baseline) =
                 self.unread_label.measure(orientation, for_size);
 
             match orientation {
-                gtk::Orientation::Horizontal => self.unread_label_width.set(min3),
-                _ => self.unread_label_height.set(min3),
+                gtk::Orientation::Horizontal => self.unread_label_width.set(min),
+                _ => self.unread_label_height.set(min),
             }
 
-            (
-                min1.max(min2).max(min3),
-                nat1.max(nat2).max(nat3),
-                min_baseline1.max(min_baseline2).max(min_baseline3),
-                nat_baseline1.max(nat_baseline2).max(nat_baseline3),
-            )
+            (min, nat, min_baseline, nat_baseline)
         }
 
         fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
-            let unread_label_width = self.unread_label_width.get();
-            let unread_label_height = self.unread_label_height.get();
+            let has_unread = self
+                .obj()
+                .chat_list()
+                .map(|cl| cl.unread_chat_count() > 0)
+                .unwrap_or(false);
 
-            self.icon
-                .size_allocate(&gdk::Rectangle::new(0, 0, width, height), baseline);
-
-            self.unread_mask_bin.size_allocate(
-                &gdk::Rectangle::new(
-                    match self.obj().direction() {
-                        gtk::TextDirection::Ltr => width - unread_label_width - 2,
-                        _ => 0,
-                    },
-                    0,
-                    unread_label_width + 2,
-                    unread_label_height + 2,
-                ),
-                baseline,
-            );
-
-            self.unread_label
-                .size_allocate(&gdk::Rectangle::new(0, 0, width, height), baseline);
+            if has_unread {
+                self.unread_label
+                    .size_allocate(&gdk::Rectangle::new(0, 0, width, height), baseline);
+            }
         }
 
         fn snapshot(&self, snapshot: &gtk::Snapshot) {
@@ -181,21 +170,10 @@ mod imp {
             if obj
                 .chat_list()
                 .filter(|chat_list| chat_list.unread_chat_count() > 0)
-                .is_none()
+                .is_some()
             {
-                obj.snapshot_child(&*self.icon, snapshot);
-                return;
+                obj.snapshot_child(&*self.unread_label, snapshot);
             }
-
-            snapshot.push_mask(gsk::MaskMode::InvertedAlpha);
-
-            obj.snapshot_child(&*self.unread_mask_bin, snapshot);
-            snapshot.pop();
-
-            obj.snapshot_child(&*self.icon, snapshot);
-            snapshot.pop();
-
-            obj.snapshot_child(&*self.unread_label, snapshot);
         }
     }
 }

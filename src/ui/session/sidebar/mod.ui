@@ -69,24 +69,17 @@
                     <child>
                       <object class="AdwHeaderBar">
 
-                        <child>
-                          <object class="GtkButton">
+                        <child type="start">
+                          <object class="GtkMenuButton">
                             <style>
-                              <class name="image-button"/>
+                              <class name="flat"/>
+                              <class name="telegram-menu-btn"/>
                             </style>
-                            <property name="action-name">sidebar.show-sessions</property>
-
-                            <child>
-                              <object class="PaplAvatar">
-                                <property name="size">24</property>
-                                <binding name="item">
-                                  <lookup name="me" type="ClientStateSession">
-                                    <lookup name="session">PaplSidebar</lookup>
-                                  </lookup>
-                                </binding>
-                              </object>
-                            </child>
-
+                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="menu-model">primary_menu</property>
+                            <accessibility>
+                              <property name="label" translatable="yes">Menu</property>
+                            </accessibility>
                           </object>
                         </child>
 
@@ -99,11 +92,32 @@
                                 <property name="name">chats-label</property>
 
                                 <property name="child">
-                                  <object class="GtkLabel">
+                                  <object class="GtkButton">
                                     <style>
-                                      <class name="title"/>
+                                      <class name="flat"/>
+                                      <class name="telegram-search-bar"/>
                                     </style>
-                                    <property name="label" translatable="yes">Chats</property>
+                                    <property name="action-name">sidebar.start-search</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="spacing">8</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <child>
+                                          <object class="GtkImage">
+                                            <property name="icon-name">system-search-symbolic</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="label" translatable="yes">Pesquisar</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <accessibility>
+                                      <property name="label" translatable="yes">Pesquisar</property>
+                                    </accessibility>
                                   </object>
                                 </property>
 
@@ -124,62 +138,34 @@
 
                                     <child>
                                       <object class="GtkBox">
-                                        <property name="orientation">vertical</property>
+                                        <property name="orientation">horizontal</property>
                                         <property name="valign">center</property>
+                                        <property name="halign">center</property>
+                                        <property name="spacing">6</property>
 
                                         <child>
-                                          <object class="GtkBox">
-                                            <property name="halign">center</property>
-                                            <property name="valign">center</property>
-                                            <property name="spacing">3</property>
-
-                                            <child>
-                                              <object class="GtkLabel">
-                                                <property name="label" translatable="yes">Chats</property>
-                                                <property name="ellipsize">end</property>
-                                              </object>
-                                            </child>
-
+                                          <object class="GtkLabel">
+                                            <property name="label" translatable="yes">Chats Arquivados</property>
+                                            <property name="ellipsize">end</property>
                                           </object>
                                         </child>
 
                                         <child>
-                                          <object class="GtkBox">
-                                            <property name="halign">center</property>
+                                          <object class="GtkLabel" id="archive_unread_label">
+                                            <style>
+                                              <class name="unread-count"/>
+                                            </style>
+                                            <property name="label">0</property>
                                             <property name="valign">center</property>
-                                            <property name="spacing">3</property>
+                                          </object>
+                                        </child>
 
-                                            <child>
-                                              <object class="GtkLabel">
-                                                <style>
-                                                  <class name="caption"/>
-                                                  <class name="dim-label"/>
-                                                </style>
-                                                <property name="label" translatable="yes">Arquivados</property>
-                                                <property name="ellipsize">end</property>
-                                              </object>
-                                            </child>
-
-                                            <child>
-                                              <object class="GtkLabel" id="archive_unread_label">
-                                                <style>
-                                                  <class name="unread-label"/>
-                                                </style>
-                                                <property name="label">6</property>
-                                                <property name="valign">center</property>
-                                              </object>
-                                            </child>
-
-                                            <child>
-                                              <object class="GtkImage">
-                                                <style>
-                                                  <class name="dim-label"/>
-                                                </style>
-                                                <property name="icon-name">arrow1-right-symbolic</property>
-                                                <property name="margin-start">3</property>
-                                              </object>
-                                            </child>
-
+                                        <child>
+                                          <object class="GtkImage">
+                                            <style>
+                                              <class name="dim-label"/>
+                                            </style>
+                                            <property name="icon-name">arrow1-right-symbolic</property>
                                           </object>
                                         </child>
 
@@ -196,16 +182,27 @@
                         </property>
 
                         <child type="end">
-                          <object class="GtkMenuButton">
-                            <property name="icon-name">open-menu-symbolic</property>
-                            <property name="menu-model">primary_menu</property>
-                          </object>
-                        </child>
-
-                        <child type="start">
                           <object class="GtkButton">
-                            <property name="action-name">sidebar.start-search</property>
-                            <property name="icon-name">system-search-symbolic</property>
+                            <style>
+                              <class name="image-button"/>
+                              <class name="flat"/>
+                            </style>
+                            <property name="action-name">sidebar.show-sessions</property>
+
+                            <child>
+                              <object class="PaplAvatar">
+                                <property name="size">26</property>
+                                <binding name="item">
+                                  <lookup name="me" type="ClientStateSession">
+                                    <lookup name="session">PaplSidebar</lookup>
+                                  </lookup>
+                                </binding>
+                              </object>
+                            </child>
+
+                            <accessibility>
+                              <property name="label" translatable="yes">Contas</property>
+                            </accessibility>
                           </object>
                         </child>
 

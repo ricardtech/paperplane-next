@@ -3,6 +3,7 @@ use std::cell::OnceCell;
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use glib::clone;
+use gtk::gdk;
 use gtk::gio;
 use gtk::glib;
 use gtk::prelude::*;
@@ -63,6 +64,7 @@ mod imp {
             obj.setup_gactions();
             obj.setup_accels();
             obj.load_color_scheme();
+            obj.setup_telegram_theme();
             crate::tray::init_tray(&obj);
         }
     }
@@ -151,6 +153,26 @@ impl Application {
             "light" => style_manager.set_color_scheme(adw::ColorScheme::ForceLight),
             "dark" => style_manager.set_color_scheme(adw::ColorScheme::ForceDark),
             _ => style_manager.set_color_scheme(adw::ColorScheme::PreferLight),
+        }
+    }
+
+    fn setup_telegram_theme(&self) {
+        if let Some(display) = gdk::Display::default() {
+            let provider = gtk::CssProvider::new();
+            provider.load_from_resource("/app/drey/paper-plane/style.css");
+            gtk::style_context_add_provider_for_display(
+                &display,
+                &provider,
+                gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+            );
+
+            let dark_provider = gtk::CssProvider::new();
+            dark_provider.load_from_resource("/app/drey/paper-plane/style-dark.css");
+            gtk::style_context_add_provider_for_display(
+                &display,
+                &dark_provider,
+                gtk::STYLE_PROVIDER_PRIORITY_USER,
+            );
         }
     }
 

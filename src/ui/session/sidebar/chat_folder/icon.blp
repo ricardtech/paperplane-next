@@ -3,26 +3,20 @@ using Adw 1;
 
 template $PaplSidebarChatFolderIcon {
   halign: center;
-  width-request: 54;
+  valign: center;
 
   Image icon {
-    margin-top: 6;
-    pixel-size: 22;
+    visible: false;
   }
 
   Adw.Bin unread_mask_bin {
-    styles ["unread-mask"]
-
-    hexpand: true;
-    vexpand: true;
+    visible: false;
   }
 
   Label unread_label {
-    styles ["unread-label"]
+    styles ["unread-count"]
 
-    halign: end;
-    valign: start;
-    margin-top: 2;
-    margin-end: 2;
+    halign: center;
+    valign: center;
   }
 }
