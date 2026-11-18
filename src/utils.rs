@@ -299,3 +299,42 @@ impl Iterator for ChildIter {
         r
     }
 }
+
+pub(crate) fn is_autostart_enabled() -> bool {
+    glib::user_config_dir()
+        .join("autostart")
+        .join(format!("{}.desktop", config::APP_ID))
+        .exists()
+}
+
+pub(crate) fn set_autostart_enabled(enabled: bool) {
+    let autostart_dir = glib::user_config_dir().join("autostart");
+    let desktop_file = autostart_dir.join(format!("{}.desktop", config::APP_ID));
+
+    if enabled {
+        if let Err(e) = std::fs::create_dir_all(&autostart_dir) {
+            log::warn!("Failed to create autostart directory: {}", e);
+            return;
+        }
+
+        let content = format!(
+            "[Desktop Entry]\n\
+            Name=PaperPlane Next\n\
+            Comment=Cliente Telegram Nativo em Rust\n\
+            Exec=paper-plane\n\
+            Icon={}\n\
+            Terminal=false\n\
+            Type=Application\n\
+            Categories=Network;InstantMessaging;Chat;\n\
+            StartupNotify=false\n\
+            X-GNOME-Autostart-enabled=true\n",
+            config::APP_ID
+        );
+
+        if let Err(e) = std::fs::write(&desktop_file, content) {
+            log::warn!("Failed to write autostart desktop file: {}", e);
+        }
+    } else if desktop_file.exists() {
+        let _ = std::fs::remove_file(desktop_file);
+    }
+}

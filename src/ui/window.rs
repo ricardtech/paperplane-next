@@ -70,14 +70,15 @@ mod imp {
     impl WidgetImpl for Window {}
 
     impl WindowImpl for Window {
-        // Save window state on delete event
+        // Save window state on delete event and hide to background
         fn close_request(&self) -> glib::Propagation {
             if let Err(err) = self.obj().save_window_size() {
                 log::warn!("Failed to save window state, {}", &err);
             }
 
-            // Pass close request on to the parent
-            self.parent_close_request()
+            // Hide window instead of destroying to keep background process and session alive
+            self.obj().set_visible(false);
+            glib::Propagation::Stop
         }
     }
 

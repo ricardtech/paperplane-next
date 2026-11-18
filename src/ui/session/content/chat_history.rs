@@ -164,7 +164,7 @@ mod imp {
                             obj.imp().is_loading_messages.set(false);
 
                             if let Err(model::ChatHistoryError::Tdlib(e)) =
-                                model.load_older_messages(2).await
+                                model.load_older_messages(30).await
                             {
                                 log::warn!("Couldn't load more chat messages: {:?}", e);
                             }
@@ -375,6 +375,14 @@ impl ChatHistory {
                 model.clone().upcast()
             };
 
+            let selection = gtk::NoSelection::new(Some(list_view_model));
+            imp.list_view.set_model(Some(&selection));
+
+            imp.model.replace(Some(model.clone()));
+
+            // Inform TDLib immediately that the chat is open
+            perform_chat_action(chat, tdlib::functions::open_chat);
+
             utils::spawn(clone!(@weak self as obj, @weak model => async move {
                 let imp = obj.imp();
 
@@ -383,25 +391,16 @@ impl ChatHistory {
                 let scrollbar = imp.scrolled_window.vscrollbar();
                 scrollbar.set_visible(false);
 
-                let adj = imp.list_view.vadjustment().unwrap();
-                adj.set_value(0.0);
-
-                while adj.value() == 0.0 {
-                    match model.load_older_messages(2).await {
-                        Ok(can_load_more) => if !can_load_more {
-                            break;
-                        }
-                        Err(e) => {
-                            log::warn!("Couldn't load initial history messages: {}", e);
-                            break;
-                        }
-                    }
+                // Load initial batch of 40 messages directly in a single request
+                if let Err(e) = model.load_older_messages(40).await {
+                    log::warn!("Couldn't load initial history messages: {}", e);
                 }
 
                 scrollbar.set_visible(true);
 
                 imp.is_loading_messages.set(false);
                 obj.set_sticky(true);
+                obj.scroll_down();
 
                 obj.view_messages();
             }));
@@ -412,13 +411,6 @@ impl ChatHistory {
                 }
             }));
             imp.chat_handler.replace(Some(handler));
-
-            let selection = gtk::NoSelection::new(Some(list_view_model));
-            imp.list_view.set_model(Some(&selection));
-
-            imp.model.replace(Some(model));
-
-            perform_chat_action(chat, tdlib::functions::open_chat);
         }
 
         imp.chat.set(chat);

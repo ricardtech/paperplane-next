@@ -25,6 +25,7 @@ mod imp {
         pub(super) binding: RefCell<Option<gtk::ExpressionWatch>>,
         pub(super) handler_id: RefCell<Option<glib::SignalHandlerId>>,
         pub(super) message: glib::WeakRef<model::Message>,
+        pub(super) local_path: RefCell<Option<String>>,
         #[template_child]
         pub(super) message_bubble: TemplateChild<ui::MessageBubble>,
         #[template_child]
@@ -75,8 +76,33 @@ mod imp {
         fn constructed(&self) {
             self.parent_constructed();
 
+            let obj = self.obj();
+            let click = gtk::GestureClick::new();
+            click.set_button(0);
+            click.connect_pressed(clone!(@weak obj => move |gesture, _, _, _| {
+                let button = gesture.current_button();
+                let path = obj.imp().local_path.borrow().clone();
+                if let Some(path) = path {
+                    if !path.is_empty() && std::path::Path::new(&path).exists() {
+                        if button == gdk::BUTTON_PRIMARY {
+                            let uri = format!("file://{}", path);
+                            let _ = gio::AppInfo::launch_default_for_uri(&uri, None::<&gio::AppLaunchContext>);
+                        } else if button == gdk::BUTTON_SECONDARY {
+                            if let Some(download_dir) = glib::user_special_dir(glib::UserDirectory::Downloads) {
+                                let file_name = std::path::Path::new(&path).file_name().unwrap_or_default();
+                                let dest = download_dir.join(file_name);
+                                let _ = std::fs::copy(&path, &dest);
+                            }
+                        }
+                    }
+                }
+            }));
+            self.picture.add_controller(click);
+
             self.obj().connect_scale_factor_notify(|obj| {
-                obj.update_photo(&obj.imp().message.upgrade().unwrap());
+                if let Some(msg) = obj.imp().message.upgrade() {
+                    obj.update_photo(&msg);
+                }
             });
         }
     }
@@ -201,6 +227,8 @@ impl MessagePhoto {
     }
 
     fn load_photo(&self, path: String) {
+        self.imp().local_path.replace(Some(path.clone()));
+
         if let Some(message_id) = self.message_id() {
             utils::spawn(clone!(@weak self as obj => async move {
                 let result = gio::spawn_blocking(move || utils::decode_image_from_path(&path))

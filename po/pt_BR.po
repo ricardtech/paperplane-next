@@ -1587,3 +1587,45 @@ msgstr "Português (Brasil)"
 
 msgid "Idioma padrão da comunidade RicardTech"
 msgstr "Idioma padrão da comunidade RicardTech"
+
+msgid "Proxy"
+msgstr "Proxy"
+
+msgid "Proxy Settings"
+msgstr "Configurações de Proxy"
+
+msgid "Use Proxy"
+msgstr "Usar Servidor Proxy"
+
+msgid "Connect through a proxy server"
+msgstr "Conectar através de um servidor proxy"
+
+msgid "Proxy Type"
+msgstr "Tipo de Proxy"
+
+msgid "Server / Host"
+msgstr "Servidor / Host"
+
+msgid "Port"
+msgstr "Porta"
+
+msgid "Secret / Password"
+msgstr "Segredo / Senha"
+
+msgid "System & Startup"
+msgstr "Sistema & Inicialização"
+
+msgid "Background Behavior"
+msgstr "Comportamento em Segundo Plano"
+
+msgid "Start with System"
+msgstr "Iniciar com o Sistema"
+
+msgid "Launch PaperPlane automatically on system boot"
+msgstr "Iniciar o PaperPlane automaticamente na inicialização do sistema"
+
+msgid "Close to Notification Area"
+msgstr "Fechar para a Área de Notificações"
+
+msgid "Keep running in the background when the window is closed"
+msgstr "Continuar executando em segundo plano quando a janela for fechada"

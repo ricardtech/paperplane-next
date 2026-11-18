@@ -152,4 +152,74 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
       }
     }
   }
+
+  Adw.PreferencesPage {
+    title: _("Proxy");
+    icon-name: "network-server-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Proxy Settings");
+
+      Adw.ActionRow {
+        title: _("Use Proxy");
+        subtitle: _("Connect through a proxy server");
+
+        Switch {
+          valign: center;
+        }
+      }
+
+      Adw.ComboRow {
+        title: _("Proxy Type");
+        model: Gtk.StringList {
+          strings [
+            "MTProto",
+            "SOCKS5",
+            "HTTP"
+          ]
+        };
+      }
+
+      Adw.EntryRow {
+        title: _("Server / Host");
+      }
+
+      Adw.EntryRow {
+        title: _("Port");
+      }
+
+      Adw.PasswordEntryRow {
+        title: _("Secret / Password");
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("System & Startup");
+    icon-name: "preferences-system-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Background Behavior");
+
+      Adw.ActionRow {
+        title: _("Start with System");
+        subtitle: _("Launch PaperPlane automatically on system boot");
+
+        Switch {
+          active: true;
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
+        title: _("Close to Notification Area");
+        subtitle: _("Keep running in the background when the window is closed");
+
+        Switch {
+          active: true;
+          valign: center;
+        }
+      }
+    }
+  }
 }
