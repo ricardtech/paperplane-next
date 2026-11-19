@@ -124,7 +124,7 @@ impl From<&model::ClientStateSession> for ChatFolderList {
 
 impl ChatFolderList {
     pub(crate) fn has_folders(&self) -> bool {
-        self.n_items() > 1
+        self.n_items() > 0
     }
 
     pub(crate) fn session_(&self) -> model::ClientStateSession {

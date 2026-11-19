@@ -91,7 +91,7 @@ mod imp {
             dy: f64,
             _scroll: gtk::EventControllerScroll,
         ) -> glib::Propagation {
-            let adj = self.scrolled_window.hadjustment();
+            let adj = self.scrolled_window.vadjustment();
             adj.set_value(adj.value() + dy * 25.0);
 
             glib::Propagation::Proceed

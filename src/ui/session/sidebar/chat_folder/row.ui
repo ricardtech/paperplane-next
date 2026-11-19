@@ -26,12 +26,20 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     </child>
     <child>
       <object class="GtkBox">
-        <property name="orientation">0</property>
-        <property name="spacing">6</property>
-        <property name="margin-start">12</property>
-        <property name="margin-end">12</property>
-        <property name="margin-top">8</property>
-        <property name="margin-bottom">8</property>
+        <property name="orientation">1</property>
+        <property name="spacing">2</property>
+        <property name="margin-start">2</property>
+        <property name="margin-end">2</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="halign">3</property>
+        <child>
+          <object class="PaplSidebarChatFolderIcon" id="icon">
+            <property name="chat-list" bind-source="PaplSidebarChatFolderRow" bind-property="chat-list" bind-flags="sync-create"/>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+          </object>
+        </child>
         <child>
           <object class="GtkLabel" id="title_label">
             <style>
@@ -39,12 +47,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </style>
             <property name="justify">2</property>
             <property name="wrap">false</property>
-          </object>
-        </child>
-        <child>
-          <object class="PaplSidebarChatFolderIcon" id="icon">
-            <property name="chat-list" bind-source="PaplSidebarChatFolderRow" bind-property="chat-list" bind-flags="sync-create"/>
-            <property name="valign">center</property>
+            <property name="ellipsize">3</property>
+            <property name="max-width-chars">8</property>
+            <property name="halign">3</property>
           </object>
         </child>
       </object>

@@ -152,7 +152,7 @@ impl Application {
         match settings.string("color-scheme").as_ref() {
             "light" => style_manager.set_color_scheme(adw::ColorScheme::ForceLight),
             "dark" => style_manager.set_color_scheme(adw::ColorScheme::ForceDark),
-            _ => style_manager.set_color_scheme(adw::ColorScheme::PreferLight),
+            _ => style_manager.set_color_scheme(adw::ColorScheme::ForceDark),
         }
     }
 

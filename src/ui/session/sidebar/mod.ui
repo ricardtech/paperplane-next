@@ -62,30 +62,36 @@
             <property name="title" translatable="yes">Chats</property>
 
             <child>
-              <object class="AdwToolbarView" id="main_view">
-                <child type="top">
-                  <object class="GtkOverlay">
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+
+                <child>
+                  <object class="GtkBox" id="rail_box">
+                    <style>
+                      <class name="telegram-left-rail"/>
+                    </style>
+                    <property name="orientation">vertical</property>
+                    <property name="width-request">68</property>
 
                     <child>
-                      <object class="AdwHeaderBar">
-                        <property name="show-start-title-buttons">false</property>
-                        <property name="show-end-title-buttons">false</property>
-
-                        <child type="start">
-                          <object class="GtkMenuButton">
+                      <object class="GtkMenuButton">
+                        <style>
+                          <class name="flat"/>
+                          <class name="telegram-menu-btn"/>
+                        </style>
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="margin-top">8</property>
+                        <property name="margin-bottom">4</property>
+                        <property name="popover">
+                          <object class="GtkPopover" id="drawer_popover">
                             <style>
-                              <class name="flat"/>
-                              <class name="telegram-menu-btn"/>
+                              <class name="telegram-drawer-popover"/>
                             </style>
-                            <property name="icon-name">open-menu-symbolic</property>
-                            <property name="popover">
-                              <object class="GtkPopover" id="drawer_popover">
-                                <style>
-                                  <class name="telegram-drawer-popover"/>
-                                </style>
-                                <property name="has-arrow">false</property>
-                                <property name="autohide">true</property>
-                                <property name="position">bottom</property>
+                            <property name="has-arrow">false</property>
+                            <property name="autohide">true</property>
+                            <property name="position">right</property>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
@@ -436,7 +442,70 @@
                           </object>
                         </child>
 
-                        <property name="title-widget">
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="orientation">horizontal</property>
+                            <property name="margin-start">8</property>
+                            <property name="margin-end">8</property>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="PaplSidebarChatFolderBar" id="folder_bar">
+                            <property name="vexpand">true</property>
+                            <binding name="chat-folder-list">
+                              <lookup name="chat-folder-list" type="ClientStateSession">
+                                <lookup name="session">PaplSidebar</lookup>
+                              </lookup>
+                            </binding>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="orientation">horizontal</property>
+                            <property name="margin-start">8</property>
+                            <property name="margin-end">8</property>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkButton">
+                            <style>
+                              <class name="flat"/>
+                              <class name="telegram-rail-btn"/>
+                            </style>
+                            <property name="icon-name">emblem-system-symbolic</property>
+                            <property name="action-name">session.show-preferences</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="margin-top">4</property>
+                            <property name="margin-bottom">8</property>
+                            <accessibility>
+                              <property name="label" translatable="yes">Configurações</property>
+                            </accessibility>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="orientation">vertical</property>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="AdwToolbarView" id="main_view">
+                        <property name="hexpand">true</property>
+                        <child type="top">
+                          <object class="GtkOverlay">
+                            <child>
+                              <object class="AdwHeaderBar">
+                                <property name="show-start-title-buttons">false</property>
+                                <property name="show-end-title-buttons">false</property>
+
+                                <property name="title-widget">
                           <object class="GtkStack" id="title_stack">
                             <property name="hhomogeneous">False</property>
 
@@ -546,17 +615,6 @@
                   </object>
                 </child>
 
-                <child type="top">
-                  <object class="PaplSidebarChatFolderBar" id="folder_bar">
-                    <binding name="chat-folder-list">
-                      <lookup name="chat-folder-list" type="ClientStateSession">
-                        <lookup name="session">PaplSidebar</lookup>
-                      </lookup>
-                    </binding>
-
-                  </object>
-                </child>
-
                 <child>
                   <object class="GtkScrolledWindow">
                     <property name="vexpand">True</property>
@@ -577,6 +635,9 @@
 
               </object>
             </child>
+
+          </object>
+        </child>
 
           </object>
         </child>

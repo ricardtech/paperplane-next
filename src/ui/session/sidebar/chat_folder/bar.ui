@@ -27,17 +27,17 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     </child>
     <child>
       <object class="GtkScrolledWindow" id="scrolled_window">
-        <property name="hscrollbar-policy">3</property>
+        <property name="hscrollbar-policy">2</property>
         <property name="vscrollbar-policy">2</property>
-        <property name="propagate-natural-height">true</property>
+        <property name="vexpand">true</property>
         <child>
           <object class="GtkListView">
             <style>
               <class name="navigation-sidebar"/>
-              <class name="navigation-tabbar"/>
+              <class name="telegram-vertical-folders"/>
             </style>
             <signal name="activate" handler="on_list_view_activated" swapped="True"/>
-            <property name="orientation">0</property>
+            <property name="orientation">1</property>
             <property name="single-click-activate">true</property>
             <property name="factory">
               <object class="GtkSignalListItemFactory" id="signal_list_item_factory">

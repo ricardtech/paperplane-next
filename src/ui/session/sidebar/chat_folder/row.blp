@@ -17,23 +17,28 @@ template $PaplSidebarChatFolderRow {
   }
 
   Box {
-    orientation: horizontal;
-    spacing: 6;
-    margin-start: 12;
-    margin-end: 12;
-    margin-top: 8;
-    margin-bottom: 8;
+    orientation: vertical;
+    spacing: 2;
+    margin-start: 2;
+    margin-end: 2;
+    margin-top: 6;
+    margin-bottom: 6;
+    halign: center;
+
+    $PaplSidebarChatFolderIcon icon {
+      chat-list: bind template.chat-list;
+      halign: center;
+      valign: center;
+    }
 
     Label title_label {
       styles ["chat-folder-tab-title"]
 
       justify: center;
       wrap: false;
-    }
-
-    $PaplSidebarChatFolderIcon icon {
-      chat-list: bind template.chat-list;
-      valign: center;
+      ellipsize: end;
+      max-width-chars: 8;
+      halign: center;
     }
   }
 }

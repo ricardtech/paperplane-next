@@ -40,11 +40,67 @@ headerbar windowtitle, adwheaderbar windowtitle {
   font-weight: 600;
 }
 
+/* Coluna Vertical Esquerda Oficial do Telegram Desktop */
+.telegram-left-rail {
+  background-color: #0e1621 !important;
+  min-width: 68px;
+  max-width: 68px;
+  border-right: 1px solid #101921;
+}
+
+.telegram-rail-btn {
+  color: #7f91a4;
+  padding: 8px;
+  border-radius: 10px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.telegram-rail-btn:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.telegram-vertical-folders {
+  background-color: transparent !important;
+  padding: 4px 0;
+}
+
+.telegram-vertical-folders row {
+  margin: 4px 6px;
+  padding: 6px 2px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #7f91a4;
+  transition: all 150ms ease;
+}
+
+.telegram-vertical-folders row:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.telegram-vertical-folders row:selected {
+  background-color: #242f3d !important;
+  color: #2481cc !important;
+}
+
+.telegram-vertical-folders row:selected .chat-folder-tab-title {
+  color: #2481cc !important;
+  font-weight: bold;
+}
+
+.telegram-vertical-folders row:selected chatfoldericon {
+  color: #2481cc !important;
+}
+
 /* Botão Hamburger (Menu Lateral) */
 .telegram-menu-btn {
   color: #7f91a4;
   padding: 6px 10px;
   border-radius: 8px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .telegram-menu-btn:hover {
