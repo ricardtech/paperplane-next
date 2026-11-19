@@ -251,6 +251,17 @@ button.suggested-action, .send-button {
   font-weight: 500;
 }
 
+/* Pílula Flutuante Central de Nenhum Chat Selecionado (Oficial Telegram Desktop) */
+.telegram-empty-chat-pill {
+  background-color: rgba(24, 37, 51, 0.75) !important;
+  color: #7f91a4 !important;
+  border-radius: 16px !important;
+  padding: 6px 18px !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
 /* Botão de Rolar para Baixo */
 button.scroll-to-bottom {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -286,3 +297,70 @@ preferencespage, preferencesgroup {
 .sender-text-cyan { color: #62d4e3; }
 .sender-text-blue { color: #65bdf3; }
 .sender-text-pink { color: #ff5694; }
+
+/* Gaveta Lateral (Telegram Drawer) */
+.telegram-drawer-popover contents {
+  background-color: #17212b !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  padding: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.telegram-drawer-header {
+  padding: 16px 14px 12px 14px;
+  background-color: #17212b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.telegram-drawer-header .drawer-name {
+  font-weight: bold;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.telegram-drawer-header .drawer-subtitle {
+  font-size: 13px;
+  color: #2f9ff8;
+}
+
+.telegram-drawer-items {
+  padding: 6px;
+}
+
+.telegram-drawer-item {
+  border-radius: 8px;
+  padding: 8px 10px;
+  min-height: 40px;
+  color: #f5f5f5;
+  transition: background-color 150ms ease;
+}
+
+.telegram-drawer-item:hover {
+  background-color: #232e3c !important;
+}
+
+.telegram-drawer-item image {
+  color: #708499;
+}
+
+.telegram-drawer-item label {
+  font-size: 14px;
+  color: #e5e5e5;
+}
+
+.telegram-drawer-badge {
+  background-color: #242f3d;
+  color: #6c7883;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Telegram Settings Profile Card */
+.telegram-profile-card-group > box {
+  background-color: #1c2733 !important;
+  border-radius: 12px;
+  padding: 8px;
+}

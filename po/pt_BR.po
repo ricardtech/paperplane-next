@@ -1523,6 +1523,57 @@ msgstr "Idioma"
 msgid "Select a chat to start messaging"
 msgstr "Selecione uma conversa para começar a conversar"
 
+msgid "Buscar"
+msgstr "Buscar"
+
+msgid "Selecione um chat para começar a conversar"
+msgstr "Selecione um chat para começar a conversar"
+
+msgid "Emoji de Status"
+msgstr "Emoji de Status"
+
+msgid "Chats arquivados"
+msgstr "Chats arquivados"
+
+msgid "Meu Perfil"
+msgstr "Meu Perfil"
+
+msgid "Novo Grupo"
+msgstr "Novo Grupo"
+
+msgid "Novo Canal"
+msgstr "Novo Canal"
+
+msgid "Contatos"
+msgstr "Contatos"
+
+msgid "Chamadas"
+msgstr "Chamadas"
+
+msgid "Mensagens Salvas"
+msgstr "Mensagens Salvas"
+
+msgid "Configurações"
+msgstr "Configurações"
+
+msgid "Modo Noturno"
+msgstr "Modo Noturno"
+
+msgid "Sobre o PaperPlane Next"
+msgstr "Sobre o PaperPlane Next"
+
+msgid "Código QR"
+msgstr "Código QR"
+
+msgid "Esquema de cores e Chat"
+msgstr "Esquema de cores e Chat"
+
+msgid "Uso de Armazenamento e Cache"
+msgstr "Uso de Armazenamento e Cache"
+
+msgid "Notificações e Sons"
+msgstr "Notificações e Sons"
+
 #~ msgid "A Telegram client optimized for the GNOME desktop"
 #~ msgstr "Um cliente Telegram otimizado para o ambiente de trabalho GNOME"
 

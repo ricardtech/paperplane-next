@@ -8,13 +8,85 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   <requires lib="gtk" version="4.0"/>
   <template class="PaplPreferencesWindow" parent="AdwPreferencesWindow">
     <property name="title" translatable="yes">Configurações</property>
+    <property name="default-width">460</property>
+    <property name="default-height">680</property>
     <child>
       <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Geral</property>
-        <property name="icon-name">preferences-system-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Esquema de cores</property>
+            <style>
+              <class name="telegram-profile-card-group"/>
+            </style>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">0</property>
+                <property name="spacing">16</property>
+                <property name="margin-top">14</property>
+                <property name="margin-bottom">14</property>
+                <property name="margin-start">14</property>
+                <property name="margin-end">14</property>
+                <child>
+                  <object class="PaplAvatar" id="profile_avatar">
+                    <property name="size">72</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">1</property>
+                    <property name="spacing">4</property>
+                    <property name="valign">3</property>
+                    <property name="hexpand">true</property>
+                    <child>
+                      <object class="GtkLabel" id="profile_name_label">
+                        <style>
+                          <class name="title-2"/>
+                          <class name="bold"/>
+                        </style>
+                        <property name="halign">1</property>
+                        <property name="label">Ricard Play</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="profile_phone_label">
+                        <style>
+                          <class name="dim-label"/>
+                          <class name="caption"/>
+                        </style>
+                        <property name="halign">1</property>
+                        <property name="label">+55 81 99812 7081</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="profile_username_label">
+                        <style>
+                          <class name="dim-label"/>
+                          <class name="caption"/>
+                        </style>
+                        <property name="halign">1</property>
+                        <property name="label">@ricardplaynew</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <style>
+                      <class name="flat"/>
+                      <class name="circular"/>
+                    </style>
+                    <property name="valign">3</property>
+                    <property name="icon-name">emblem-shared-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Código QR</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Esquema de cores e Chat</property>
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Seguir cores do sistema</property>
@@ -37,15 +109,10 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 </child>
               </object>
             </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Comportamento do Chat</property>
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Enviar com Enter</property>
-                <property name="subtitle" translatable="yes">Pressione Shift+Enter para uma nova linha</property>
+                <property name="subtitle" translatable="yes">Pressione Shift+Enter para quebrar a linha</property>
                 <child>
                   <object class="GtkSwitch">
                     <property name="active">true</property>
@@ -56,15 +123,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Notificações</property>
-        <property name="icon-name">preferences-system-notifications-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Notificações de Conversas</property>
+            <property name="title" translatable="yes">Notificações e Sons</property>
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Conversas Privadas</property>
@@ -80,7 +141,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Grupos</property>
-                <property name="subtitle" translatable="yes">Exibir notificações para chats em grupo</property>
+                <property name="subtitle" translatable="yes">Exibir notificações para mensagens em grupos</property>
                 <child>
                   <object class="GtkSwitch">
                     <property name="active">true</property>
@@ -103,15 +164,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Privacidade e Segurança</property>
-        <property name="icon-name">security-high-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Segurança</property>
+            <property name="title" translatable="yes">Privacidade e Segurança</property>
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Sessões Ativas</property>
@@ -133,15 +188,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Armazenamento</property>
-        <property name="icon-name">drive-harddisk-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Uso de Armazenamento</property>
+            <property name="title" translatable="yes">Uso de Armazenamento e Cache</property>
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Tamanho do Cache</property>
@@ -163,24 +212,18 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="label" translatable="yes">Limpar Cache</property>
                 <property name="action-name">preferences.clear-cache</property>
                 <property name="halign">3</property>
-                <property name="margin-top">18</property>
+                <property name="margin-top">14</property>
               </object>
             </child>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Idioma</property>
-        <property name="icon-name">preferences-desktop-locale-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Idioma da Interface</property>
+            <property name="title" translatable="yes">Idioma</property>
             <child>
               <object class="AdwComboRow">
-                <property name="title" translatable="yes">Selecionar Idioma</property>
-                <property name="subtitle" translatable="yes">Escolha o idioma preferido do aplicativo</property>
+                <property name="title" translatable="yes">Idioma da Interface</property>
+                <property name="subtitle" translatable="yes">Português (Brasil)</property>
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
@@ -194,18 +237,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                       <item>Türkçe</item>
                       <item>Polski</item>
                       <item>Nederlands</item>
-                      <item>Català</item>
-                      <item>Svenska</item>
-                      <item>Suomi</item>
-                      <item>Norsk Bokmål</item>
-                      <item>Bahasa Indonesia</item>
-                      <item>Українська</item>
-                      <item>العربية</item>
-                      <item>فارسی</item>
-                      <item>עברית</item>
-                      <item>中文 (简体)</item>
-                      <item>Ελληνικά</item>
-                      <item>Беларуская</item>
                       <item>Português (Portugal)</item>
                     </items>
                   </object>
@@ -214,12 +245,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Proxy</property>
-        <property name="icon-name">network-server-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Configurações de Proxy</property>
@@ -265,15 +290,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Sistema e Inicialização</property>
-        <property name="icon-name">preferences-system-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Execução em Segundo Plano</property>
+            <property name="title" translatable="yes">Sistema e Inicialização</property>
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Iniciar com o Sistema</property>

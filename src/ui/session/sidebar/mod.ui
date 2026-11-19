@@ -68,6 +68,8 @@
 
                     <child>
                       <object class="AdwHeaderBar">
+                        <property name="show-start-title-buttons">false</property>
+                        <property name="show-end-title-buttons">false</property>
 
                         <child type="start">
                           <object class="GtkMenuButton">
@@ -76,7 +78,358 @@
                               <class name="telegram-menu-btn"/>
                             </style>
                             <property name="icon-name">open-menu-symbolic</property>
-                            <property name="menu-model">primary_menu</property>
+                            <property name="popover">
+                              <object class="GtkPopover" id="drawer_popover">
+                                <style>
+                                  <class name="telegram-drawer-popover"/>
+                                </style>
+                                <property name="has-arrow">false</property>
+                                <property name="autohide">true</property>
+                                <property name="position">bottom</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <property name="width-request">280</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <style>
+                                          <class name="telegram-drawer-header"/>
+                                        </style>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <object class="PaplAvatar" id="drawer_avatar">
+                                            <property name="size">56</property>
+                                            <property name="valign">center</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkBox">
+                                            <property name="orientation">vertical</property>
+                                            <property name="spacing">2</property>
+                                            <property name="valign">center</property>
+                                            <property name="hexpand">true</property>
+                                            <child>
+                                              <object class="GtkLabel" id="drawer_name_label">
+                                                <style>
+                                                  <class name="bold"/>
+                                                  <class name="drawer-name"/>
+                                                </style>
+                                                <property name="halign">start</property>
+                                                <property name="label">Ricard Play</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkLabel" id="drawer_status_label">
+                                                <style>
+                                                  <class name="dim-label"/>
+                                                  <class name="drawer-subtitle"/>
+                                                </style>
+                                                <property name="halign">start</property>
+                                                <property name="label" translatable="yes">Emoji de Status</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkImage">
+                                            <style>
+                                              <class name="dim-label"/>
+                                            </style>
+                                            <property name="icon-name">pan-down-symbolic</property>
+                                            <property name="valign">center</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSeparator">
+                                        <property name="orientation">horizontal</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <style>
+                                          <class name="telegram-drawer-items"/>
+                                        </style>
+                                        <property name="orientation">vertical</property>
+                                        <property name="spacing">2</property>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">sidebar.show-archived-chats</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">folder-download-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Chats arquivados</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="archive_drawer_badge">
+                                                    <style>
+                                                      <class name="telegram-drawer-badge"/>
+                                                    </style>
+                                                    <property name="label">0</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">sidebar.show-sessions</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">avatar-default-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Meu Perfil</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">sidebar.show-sessions</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">system-users-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Novo Grupo</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">sidebar.show-sessions</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">speaker-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Novo Canal</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">session.show-contacts</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">contact-new-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Contatos</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">call-start-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Chamadas</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">session.saved-messages</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">bookmark-new-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Mensagens Salvas</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">session.show-preferences</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">emblem-system-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Configurações</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkBox">
+                                            <style>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="spacing">12</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="icon-name">weather-clear-night-symbolic</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkLabel">
+                                                <property name="label" translatable="yes">Modo Noturno</property>
+                                                <property name="hexpand">true</property>
+                                                <property name="halign">start</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkSwitch" id="dark_mode_switch">
+                                                <property name="valign">center</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSeparator">
+                                            <property name="orientation">horizontal</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <style>
+                                              <class name="flat"/>
+                                              <class name="telegram-drawer-item"/>
+                                            </style>
+                                            <property name="action-name">app.about</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="spacing">12</property>
+                                                <child>
+                                                  <object class="GtkImage">
+                                                    <property name="icon-name">help-about-symbolic</property>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel">
+                                                    <property name="label" translatable="yes">Sobre o PaperPlane Next</property>
+                                                    <property name="hexpand">true</property>
+                                                    <property name="halign">start</property>
+                                                  </object>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
                             <accessibility>
                               <property name="label" translatable="yes">Menu</property>
                             </accessibility>
@@ -110,13 +463,13 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel">
-                                            <property name="label" translatable="yes">Pesquisar</property>
+                                            <property name="label" translatable="yes">Buscar</property>
                                           </object>
                                         </child>
                                       </object>
                                     </child>
                                     <accessibility>
-                                      <property name="label" translatable="yes">Pesquisar</property>
+                                      <property name="label" translatable="yes">Buscar</property>
                                     </accessibility>
                                   </object>
                                 </property>
@@ -180,31 +533,6 @@
 
                           </object>
                         </property>
-
-                        <child type="end">
-                          <object class="GtkButton">
-                            <style>
-                              <class name="image-button"/>
-                              <class name="flat"/>
-                            </style>
-                            <property name="action-name">sidebar.show-sessions</property>
-
-                            <child>
-                              <object class="PaplAvatar">
-                                <property name="size">26</property>
-                                <binding name="item">
-                                  <lookup name="me" type="ClientStateSession">
-                                    <lookup name="session">PaplSidebar</lookup>
-                                  </lookup>
-                                </binding>
-                              </object>
-                            </child>
-
-                            <accessibility>
-                              <property name="label" translatable="yes">Contas</property>
-                            </accessibility>
-                          </object>
-                        </child>
 
                       </object>
                     </child>

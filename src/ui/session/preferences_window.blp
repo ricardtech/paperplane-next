@@ -3,13 +3,62 @@ using Adw 1;
 
 template $PaplPreferencesWindow : Adw.PreferencesWindow {
   title: _("Configurações");
+  default-width: 460;
+  default-height: 680;
 
   Adw.PreferencesPage {
-    title: _("Geral");
-    icon-name: "preferences-system-symbolic";
+    Adw.PreferencesGroup {
+      styles ["telegram-profile-card-group"]
+
+      Box {
+        orientation: horizontal;
+        spacing: 16;
+        margin-top: 14;
+        margin-bottom: 14;
+        margin-start: 14;
+        margin-end: 14;
+
+        $PaplAvatar profile_avatar {
+          size: 72;
+          valign: center;
+        }
+
+        Box {
+          orientation: vertical;
+          spacing: 4;
+          valign: center;
+          hexpand: true;
+
+          Label profile_name_label {
+            styles ["title-2", "bold"]
+            halign: start;
+            label: "Ricard Play";
+          }
+
+          Label profile_phone_label {
+            styles ["dim-label", "caption"]
+            halign: start;
+            label: "+55 81 99812 7081";
+          }
+
+          Label profile_username_label {
+            styles ["dim-label", "caption"]
+            halign: start;
+            label: "@ricardplaynew";
+          }
+        }
+
+        Button {
+          styles ["flat", "circular"]
+          valign: center;
+          icon-name: "emblem-shared-symbolic";
+          tooltip-text: _("Código QR");
+        }
+      }
+    }
 
     Adw.PreferencesGroup {
-      title: _("Esquema de cores");
+      title: _("Esquema de cores e Chat");
 
       Adw.ActionRow {
         title: _("Seguir cores do sistema");
@@ -28,14 +77,10 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
           valign: center;
         }
       }
-    }
-
-    Adw.PreferencesGroup {
-      title: _("Comportamento do Chat");
 
       Adw.ActionRow {
         title: _("Enviar com Enter");
-        subtitle: _("Pressione Shift+Enter para uma nova linha");
+        subtitle: _("Pressione Shift+Enter para quebrar a linha");
 
         Switch {
           active: true;
@@ -43,14 +88,9 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
         }
       }
     }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Notificações");
-    icon-name: "preferences-system-notifications-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Notificações de Conversas");
+      title: _("Notificações e Sons");
 
       Adw.ActionRow {
         title: _("Conversas Privadas");
@@ -64,7 +104,7 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
 
       Adw.ActionRow {
         title: _("Grupos");
-        subtitle: _("Exibir notificações para chats em grupo");
+        subtitle: _("Exibir notificações para mensagens em grupos");
 
         Switch {
           active: true;
@@ -82,14 +122,9 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
         }
       }
     }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Privacidade e Segurança");
-    icon-name: "security-high-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Segurança");
+      title: _("Privacidade e Segurança");
 
       Adw.ActionRow {
         title: _("Sessões Ativas");
@@ -107,14 +142,9 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
         subtitle: _("Proteja sua conta com uma senha adicional");
       }
     }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Armazenamento");
-    icon-name: "drive-harddisk-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Uso de Armazenamento");
+      title: _("Uso de Armazenamento e Cache");
 
       Adw.ActionRow {
         title: _("Tamanho do Cache");
@@ -130,21 +160,16 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
         label: _("Limpar Cache");
         action-name: "preferences.clear-cache";
         halign: center;
-        margin-top: 18;
+        margin-top: 14;
       }
     }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Idioma");
-    icon-name: "preferences-desktop-locale-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Idioma da Interface");
+      title: _("Idioma");
 
       Adw.ComboRow {
-        title: _("Selecionar Idioma");
-        subtitle: _("Escolha o idioma preferido do aplicativo");
+        title: _("Idioma da Interface");
+        subtitle: _("Português (Brasil)");
         model: Gtk.StringList {
           strings [
             "Português (Brasil)",
@@ -157,28 +182,11 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
             "Türkçe",
             "Polski",
             "Nederlands",
-            "Català",
-            "Svenska",
-            "Suomi",
-            "Norsk Bokmål",
-            "Bahasa Indonesia",
-            "Українська",
-            "العربية",
-            "فارسی",
-            "עברית",
-            "中文 (简体)",
-            "Ελληνικά",
-            "Беларуская",
             "Português (Portugal)"
           ]
         };
       }
     }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Proxy");
-    icon-name: "network-server-symbolic";
 
     Adw.PreferencesGroup {
       title: _("Configurações de Proxy");
@@ -215,14 +223,9 @@ template $PaplPreferencesWindow : Adw.PreferencesWindow {
         title: _("Segredo / Senha");
       }
     }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Sistema e Inicialização");
-    icon-name: "preferences-system-symbolic";
 
     Adw.PreferencesGroup {
-      title: _("Execução em Segundo Plano");
+      title: _("Sistema e Inicialização");
 
       Adw.ActionRow {
         title: _("Iniciar com o Sistema");

@@ -10,10 +10,12 @@
 
         <child type="top">
           <object class="AdwHeaderBar">
+            <property name="show-start-title-buttons">false</property>
+            <property name="show-end-title-buttons">false</property>
 
             <property name="title-widget">
               <object class="GtkSearchEntry" id="search_entry">
-                <property name="placeholder-text" translatable="yes">Pesquisar</property>
+                <property name="placeholder-text" translatable="yes">Buscar</property>
                 <signal name="search-changed" handler="search" swapped="true"/>
               </object>
             </property>

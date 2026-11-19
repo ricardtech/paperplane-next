@@ -26,6 +26,14 @@ mod imp {
         pub(super) dark_theme_switch: TemplateChild<gtk::Switch>,
         #[template_child]
         pub(super) cache_size_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub(super) profile_avatar: TemplateChild<ui::Avatar>,
+        #[template_child]
+        pub(super) profile_name_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub(super) profile_phone_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub(super) profile_username_label: TemplateChild<gtk::Label>,
     }
 
     #[glib::object_subclass]
@@ -95,6 +103,23 @@ mod imp {
             }
 
             obj.setup_bindings();
+
+            if let Some(session) = self.session.get() {
+                if let Some(model) = session.model() {
+                    let me = model.me_();
+                    self.profile_avatar.set_item(Some(me.clone().upcast()));
+                    let name = format!("{} {}", me.first_name(), me.last_name()).trim().to_string();
+                    if !name.is_empty() {
+                        self.profile_name_label.set_label(&name);
+                    }
+                    if !me.phone_number().is_empty() {
+                        self.profile_phone_label.set_label(&me.phone_number());
+                    }
+                    if !me.username().is_empty() {
+                        self.profile_username_label.set_label(&format!("@{}", me.username()));
+                    }
+                }
+            }
 
             utils::spawn(clone!(@weak obj => async move {
                 obj.calculate_cache_size().await;

@@ -522,3 +522,50 @@ splitbutton.small-pill:dir(ltr) > menubutton > button {
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
 }
+
+.telegram-empty-chat-pill {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Gaveta Lateral (Telegram Drawer) */
+.telegram-drawer-popover contents {
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  padding: 0 !important;
+}
+
+.telegram-drawer-header {
+  padding: 16px 14px 12px 14px;
+}
+
+.telegram-drawer-header .drawer-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.telegram-drawer-header .drawer-subtitle {
+  font-size: 13px;
+  color: #2481cc;
+}
+
+.telegram-drawer-items {
+  padding: 6px;
+}
+
+.telegram-drawer-item {
+  border-radius: 8px;
+  padding: 8px 10px;
+  min-height: 40px;
+}
+
+.telegram-drawer-badge {
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}

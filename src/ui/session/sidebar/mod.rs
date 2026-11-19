@@ -64,6 +64,18 @@ mod imp {
         pub(super) snow: TemplateChild<ui::Snow>,
         #[template_child]
         pub(super) folder_bar: TemplateChild<ui::SidebarChatFolderBar>,
+        #[template_child]
+        pub(super) drawer_popover: TemplateChild<gtk::Popover>,
+        #[template_child]
+        pub(super) drawer_avatar: TemplateChild<ui::Avatar>,
+        #[template_child]
+        pub(super) drawer_name_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub(super) drawer_status_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub(super) archive_drawer_badge: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub(super) dark_mode_switch: TemplateChild<gtk::Switch>,
     }
 
     #[glib::object_subclass]
@@ -102,7 +114,40 @@ mod imp {
                 return;
             }
 
+            let style_manager = adw::StyleManager::default();
+            self.dark_mode_switch.set_active(style_manager.is_dark());
+            self.dark_mode_switch.connect_active_notify(move |sw| {
+                let sm = adw::StyleManager::default();
+                if sw.is_active() {
+                    sm.set_color_scheme(adw::ColorScheme::ForceDark);
+                } else {
+                    sm.set_color_scheme(adw::ColorScheme::ForceLight);
+                }
+            });
+
             if let Some(session) = session {
+                let me = session.me_();
+                self.drawer_avatar.set_item(Some(me.clone().upcast()));
+                let name = format!("{} {}", me.first_name(), me.last_name()).trim().to_string();
+                if !name.is_empty() {
+                    self.drawer_name_label.set_label(&name);
+                }
+                if !me.phone_number().is_empty() {
+                    self.drawer_status_label.set_label(&me.phone_number());
+                } else if !me.username().is_empty() {
+                    self.drawer_status_label.set_label(&format!("@{}", me.username()));
+                }
+
+                let archive_list = session.archive_chat_list();
+                let badge = self.archive_drawer_badge.get();
+                badge.set_label(&archive_list.unread_chat_count().to_string());
+                archive_list.connect_notify_local(
+                    Some("unread-chat-count"),
+                    clone!(@weak badge => move |cl, _| {
+                        badge.set_label(&cl.unread_chat_count().to_string());
+                    }),
+                );
+
                 session.archive_chat_list().connect_items_changed(
                     clone!(@weak obj, @weak session => move |chat_list, _, _, _| {
                         if chat_list.n_items() == 0 {
@@ -155,12 +200,8 @@ mod imp {
 
             archive_chat_list_expr
                 .chain_property::<model::ChatList>("len")
-                .chain_closure::<String>(closure!(|_: Self::Type, len: u32| {
-                    if len > 0 {
-                        "archive-button"
-                    } else {
-                        "chats-label"
-                    }
+                .chain_closure::<String>(closure!(|_: Self::Type, _len: u32| {
+                    "chats-label"
                 }))
                 .bind(&self.title_stack.get(), "visible-child-name", Some(obj));
 

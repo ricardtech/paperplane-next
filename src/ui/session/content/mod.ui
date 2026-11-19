@@ -26,11 +26,19 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               </object>
             </child>
             <property name="content">
-              <object class="AdwStatusPage">
+              <object class="GtkBox">
                 <property name="vexpand">true</property>
-                <property name="icon-name">user-available-symbolic</property>
-                <property name="title" translatable="yes">No Chat Selected</property>
-                <property name="description" translatable="yes">Select a chat to start messaging.</property>
+                <property name="hexpand">true</property>
+                <property name="valign">3</property>
+                <property name="halign">3</property>
+                <child>
+                  <object class="GtkLabel">
+                    <style>
+                      <class name="telegram-empty-chat-pill"/>
+                    </style>
+                    <property name="label" translatable="yes">Selecione um chat para começar a conversar</property>
+                  </object>
+                </child>
               </object>
             </property>
           </object>

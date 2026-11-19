@@ -16,11 +16,16 @@ template $Content : Adw.Bin {
         }
       }
 
-      content: Adw.StatusPage {
+      content: Box {
         vexpand: true;
-        icon-name: "user-available-symbolic";
-        title: _("No Chat Selected");
-        description: _("Select a chat to start messaging.");
+        hexpand: true;
+        valign: center;
+        halign: center;
+
+        Label {
+          styles ["telegram-empty-chat-pill"]
+          label: _("Selecione um chat para começar a conversar");
+        }
       };
     }
 
