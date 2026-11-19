@@ -48,15 +48,16 @@ jobs:
 
       - name: Compile PaperPlane Next
         run: |
+          export CARGO_BUILD_JOBS=$(nproc)
           meson setup build --prefix=/usr \
             -Dtg_api_id=22303002 \
             -Dtg_api_hash=3cc0969992690f032197e6609b296599
-          meson compile -C build
+          meson compile -C build -j $(nproc)
 
       - name: Create Arch Package (.pkg.tar.zst)
         run: |
           mkdir -p /tmp/pkg-dest/usr/lib
-          DESTDIR=/tmp/pkg-dest meson install -C build
+          DESTDIR=/tmp/pkg-dest meson install -C build --no-rebuild
 
           # Bundle prebuilt tdjson and rlottie shared libraries so package is 100% self-contained
           install -m755 /usr/lib/libtdjson.so.* /tmp/pkg-dest/usr/lib/
@@ -86,7 +87,7 @@ jobs:
           EOF
 
           cd /tmp/pkg-dest
-          tar --zstd -cf /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst * .PKGINFO
+          tar -I 'zstd -T0 -1' -cf /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst * .PKGINFO
           cp /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst /github/home/ || cp /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst ./ || true
           ls -lh /tmp/*.pkg.tar.zst
 

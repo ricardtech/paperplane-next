@@ -39,7 +39,7 @@ cargo_env = [ 'CARGO_HOME=' + meson.project_build_root() / 'cargo-home' ]
 custom_target(
   'cargo-build',
   build_by_default: true,
-  build_always_stale: true,
+  build_always_stale: false,
   output: meson.project_name(),
   console: true,
   install: true,
