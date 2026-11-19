@@ -13,7 +13,9 @@
 <p align="center">
   <a href="https://github.com/ricardtech/paperplane-next"><img src="https://img.shields.io/badge/GitHub-ricardtech%2Fpaperplane--next-181717?logo=github" alt="GitHub Repo"/></a>
   <a href="https://gitlab.com/ricard-tech/paperplane-next"><img src="https://img.shields.io/badge/GitLab-ricard--tech%2Fpaperplane--next-FC6D26?logo=gitlab" alt="GitLab Repo"/></a>
+  <a href="https://git.ricardtech.top/RicardTech/PaperPlane-Next"><img src="https://img.shields.io/badge/Forgejo-RicardTech%2FPaperPlane--Next-ff5722?logo=forgejo" alt="Forgejo Repo"/></a>
   <a href="https://aur.archlinux.org/packages/paperplane-next-git"><img src="https://img.shields.io/badge/Arch_AUR-paperplane--next--git-1793D1?logo=arch-linux" alt="Arch AUR"/></a>
+  <a href="https://github.com/ricardtech/paperplane-next/releases/tag/v0.2.2"><img src="https://img.shields.io/badge/Versão-0.2.2-blue" alt="Versão 0.2.2"/></a>
   <img src="https://img.shields.io/badge/Rust-1.80+-DEA584?logo=rust" alt="Rust"/>
   <img src="https://img.shields.io/badge/GTK4-Libadwaita-4A90D9?logo=gnome" alt="GTK4"/>
   <img src="https://img.shields.io/badge/PT--BR-100%25_Traduzido-009c3b" alt="PT-BR"/>
@@ -35,7 +37,9 @@ Enquanto clientes baseados em Electron ou Qt pesado podem demorar para abrir e c
 
 * ⚡ **Inicialização Instantânea:** Abre no clique em frações de segundo.
 * 🪶 **Consumo Mínimo de RAM:** Média de 40MB a 80MB de memória RAM em uso ativo.
-* 🎨 **Visual 100% Nativo GNOME:** Compatível com os padrões de design Libadwaita, cantos arredondados, alternância automática de tema claro/escuro e gestos fluidos de trackpad.
+* 🎯 **Paridade com Telegram Desktop:** Coluna vertical dedicada de pastas à esquerda (~68px), menu hambúrguer com gaveta deslizante completa (perfil, avatar, atalhos) e barra de busca permanente.
+* 🌙 **Modo Noturno Oficial:** Paleta Telegram Dark (`#0e1621` fundo, `#17212b` painel, `#182533` mensagens recebidas e `#2b5278` enviadas).
+* 📥 **Bandeja do Sistema Nativa:** Protocolo D-Bus `StatusNotifierItem` integrado para KDE Plasma, GNOME e XFCE com toggle de minimizar e restaurar.
 * 🇧🇷 **Localização Completa em Português do Brasil:** 100% das strings da interface e menus traduzidos para PT-BR.
 * 🔐 **Segurança e Estabilidade:** Baseado na biblioteca oficial **TDLib** (*Telegram Database Library*), que garante criptografia nativa MTProto e cache local eficiente.
 
@@ -86,12 +90,14 @@ sudo meson install -C build
 
 ## 🗺️ Roadmap de Evolução
 
-- [x] Criação da fundação comunitária e espelhamento redundante (GitHub + GitLab).
+- [x] Criação da fundação comunitária e espelhamento redundante Triplo-Push (GitHub + GitLab + Forgejo).
 - [x] Auditoria de dependências com Rust 1.80+ e Meson.
 - [x] Tradução completa em Português do Brasil (`pt_BR.po`).
 - [x] Estruturação da receita PKGBUILD para o Arch Linux AUR.
+- [x] Paridade visual e estrutural com Telegram Desktop (coluna vertical de pastas, drawer hambúrguer e tema escuro oficial).
+- [x] Integração com Bandeja do Sistema Linux via D-Bus StatusNotifierItem.
+- [x] Pipeline automatizado de CI/CD via Forgejo Actions no runner remoto do servidor `srv01br`.
 - [ ] Atualização contínua das structs de eventos da TDLib (Tópicos de Fóruns e Reações).
-- [ ] Pipeline automatizado de CI/CD via GitHub Actions e GitLab CI para compilação de binários estáticos / Flatpak.
 
 ---
 

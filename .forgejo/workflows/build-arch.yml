@@ -14,22 +14,24 @@ jobs:
     container:
       image: archlinux:latest
     steps:
-      - name: Update Pacman & Install Toolchain
+      - name: Update Pacman, Keyring & Toolchain
         run: |
           pacman-key --init
           pacman -Sy --noconfirm archlinux-keyring
           pacman -Syu --noconfirm --needed \
             base-devel git meson ninja rust cargo clang \
-            gtk4 libadwaita libshumate blueprint-compiler appstream wget unzip
+            gtk4 libadwaita libshumate blueprint-compiler appstream wget unzip nodejs
 
       - name: Install Prebuilt TDLib & rlottie
         run: |
           # 1. Download prebuilt official TDLib 1.8.19
           wget -q https://github.com/melix99/tdjson-ci/releases/download/1.8.19/tdjson-x86_64.zip -O /tmp/tdjson.zip
           unzip -q /tmp/tdjson.zip -d /tmp/tdjson
-          install -d /usr/lib/pkgconfig /usr/include
+          install -d /usr/lib/pkgconfig /usr/include /app/lib /app/include
           install -m755 /tmp/tdjson/libtdjson.so.* /usr/lib/
           ln -sf $(ls /usr/lib/libtdjson.so.* | head -n 1) /usr/lib/libtdjson.so
+          ln -sf /usr/lib/libtdjson.so /app/lib/libtdjson.so
+          sed -i 's|prefix=/app|prefix=/usr|g' /tmp/tdjson/pkgconfig/*.pc
           install -m644 /tmp/tdjson/pkgconfig/* /usr/lib/pkgconfig/
 
           # 2. Build and install rlottie (Samsung Lottie engine)
@@ -38,8 +40,16 @@ jobs:
           meson setup build --prefix=/usr -Dexample=false -Dwerror=false
           ninja -C build install
 
-      - name: Checkout PaperPlane Next
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        run: |
+          git config --global --add safe.directory '*'
+          if [ -d ".git" ]; then
+            git fetch --depth 1 origin ${{ github.sha }}
+            git checkout --force FETCH_HEAD
+          else
+            git clone --depth 1 https://git.ricardtech.top/RicardTech/PaperPlane-Next.git .
+            git checkout ${{ github.sha }} || true
+          fi
 
       - name: Compile PaperPlane Next
         run: |
@@ -83,9 +93,3 @@ jobs:
           cd /tmp/pkg-dest
           tar --zstd -cf /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst * .PKGINFO
           ls -lh /tmp/*.pkg.tar.zst
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: paperplane-next-arch-pkg
-          path: /tmp/*.pkg.tar.zst

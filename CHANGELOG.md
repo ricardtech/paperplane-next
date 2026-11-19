@@ -7,6 +7,45 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.2.2] - 2026-11-19
+
+### 🎯 Paridade Absoluta com Telegram Desktop (Barra Vertical de Pastas e Dark Mode)
+
+Atualização que consolida a paridade visual e estrutural milimétrica com o cliente oficial Telegram Desktop.
+
+#### Adicionado
+- **Coluna Vertical Dedicada de Pastas (Telegram Left Rail):**
+  - Coluna lateral fina à extrema esquerda (~68px) contendo a hierarquia oficial do Telegram Desktop.
+  - No topo: Botão Menu Hambúrguer (☰) com hover translúcido e popover deslizante para a direita (`position="right"`).
+  - No meio: Lista vertical de pastas (`PaplSidebarChatFolderBar`), com ícone centralizado, contadores de não lidas e nomes compactos com reticências.
+  - Na base: Botão de atalho rápido direto para as Configurações (⚙).
+- **Gaveta Lateral Deslizante Oficial (Telegram Drawer):**
+  - Desliza elegantemente à direita do menu lateral sem cobrir o topo.
+  - Cabeçalho completo com foto de perfil (`avatar` 56px), nome do usuário e status/telefone/username.
+  - Acesso direto a Chats Arquivados (com badge de não lidas em tempo real), Meu Perfil, Novo Grupo, Novo Canal, Contatos, Chamadas, Mensagens Salvas, Modo Noturno e Configurações.
+- **Pipeline de CI/CD Remoto (Forgejo Actions):**
+  - Workflow automatizado `.forgejo/workflows/build-arch.yml` para compilação remota isolada no container Arch Linux do Runner Dokploy (`srv01br`), sem sobrecarregar a máquina de desenvolvimento local.
+- **Sincronização Redundante Git Triplo-Push:**
+  - Envio automático simultâneo de commits, tags e releases para **GitHub**, **GitLab** e **Forgejo** (`git.ricardtech.top`).
+
+#### Corrigido
+- **Balões de Mensagem no Modo Escuro (Dark Mode):**
+  - Eliminado o fundo branco que ocorria nos balões de mensagens recebidas ao renderizar com fallback Cairo/software.
+  - Cores forçadas em padrão oficial: mensagens recebidas `#182533` (texto `#f5f5f5`) e mensagens enviadas `#2b5278` (texto `#ffffff`).
+  - Fallback padrão do aplicativo em `application.rs` atualizado para `ForceDark`.
+
+---
+
+## [0.2.1] - 2026-11-19
+
+### 🗂️ Aprimoramento de Interface e Drawer Lateral
+
+- Implementação inicial da gaveta lateral deslizante com dados do usuário conectado.
+- Reestruturação da barra de busca permanente no cabeçalho.
+- Ajuste no card de perfil das preferências e remoção de abas inferiores obsoletas.
+
+---
+
 ## [0.2.0] - 2026-11-19
 
 ### 🚀 Paridade Visual Oficial Telegram Desktop, Bandeja (Tray) e Localização 100% PT-BR
