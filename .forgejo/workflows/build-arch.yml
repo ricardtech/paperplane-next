@@ -19,8 +19,8 @@ jobs:
           pacman-key --init
           pacman -Sy --noconfirm archlinux-keyring
           pacman -Syu --noconfirm --needed \
-            base-devel git meson ninja rust cargo clang \
-            gtk4 libadwaita libshumate blueprint-compiler appstream wget unzip nodejs
+            base-devel pacman-contrib git meson ninja rust cargo clang \
+            gtk4 libadwaita libshumate blueprint-compiler appstream wget unzip nodejs curl
 
       - name: Install Prebuilt TDLib & rlottie
         run: |
@@ -96,3 +96,28 @@ jobs:
         with:
           name: paperplane-next-arch-package
           path: /tmp/*.pkg.tar.zst
+
+      - name: Deploy to Arch Repository (RicardTech/repo)
+        run: |
+          PKG_FILE=$(ls /tmp/paperplane-next-*-x86_64.pkg.tar.zst | head -n 1)
+          PKG_NAME=$(basename $PKG_FILE)
+          PKGVER=$(grep -m1 "version:" meson.build | cut -d"'" -f2)
+
+          # 1. Update Forgejo Release Assets
+          curl -s -X POST \
+            -H "Authorization: token 35ca768625442043458cc09c973ba1851d2cae55" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @"$PKG_FILE" \
+            "https://git.ricardtech.top/api/v1/repos/RicardTech/PaperPlane-Next/releases/1743/assets?name=$PKG_NAME" || true
+
+          # 2. Clone and update Arch Repository
+          git config --global user.name "RicardTech CI"
+          git config --global user.email "ci@ricardtech.top"
+          git clone --depth 1 https://RicardTech:35ca768625442043458cc09c973ba1851d2cae55@git.ricardtech.top/RicardTech/repo.git /tmp/arch-repo
+          cd /tmp/arch-repo/x86_64
+          rm -f paperplane-next-*.pkg.tar.zst
+          cp "$PKG_FILE" ./
+          repo-add -R playmax.db.tar.gz "$PKG_NAME"
+          git add -A
+          git commit -m "feat(repo): publicar paperplane-next v${PKGVER}-1 no repositorio arch" || true
+          git push origin main
