@@ -118,8 +118,9 @@ jobs:
           rm -f paperplane-next-*.pkg.tar.zst
           cp "$PKG_FILE" ./
           repo-add -R playmax.db.tar.gz "$PKG_NAME"
-          cp -f playmax.db.tar.gz playmax.db
-          cp -f playmax.files.tar.gz playmax.files
+          rm -f playmax.db playmax.files
+          cp playmax.db.tar.gz playmax.db
+          cp playmax.files.tar.gz playmax.files
           git add -A
           git commit -m "feat(repo): publicar paperplane-next v${PKGVER}-1 no repositorio arch" || true
           git push origin main
