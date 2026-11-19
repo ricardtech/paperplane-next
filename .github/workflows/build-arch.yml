@@ -30,7 +30,7 @@ jobs:
           install -d /usr/lib/pkgconfig /usr/include /app/lib /app/include
           install -m755 /tmp/tdjson/libtdjson.so.* /usr/lib/
           ln -sf $(ls /usr/lib/libtdjson.so.* | head -n 1) /usr/lib/libtdjson.so
-          ln -sf /usr/lib/libtdjson.so /app/lib/libtdjson.so
+          mkdir -p /app/lib && ln -sf /usr/lib/libtdjson.so /app/lib/
           sed -i 's|prefix=/app|prefix=/usr|g' /tmp/tdjson/pkgconfig/*.pc
           install -m644 /tmp/tdjson/pkgconfig/* /usr/lib/pkgconfig/
 
@@ -43,13 +43,8 @@ jobs:
       - name: Checkout Code
         run: |
           git config --global --add safe.directory '*'
-          if [ -d ".git" ]; then
-            git fetch --depth 1 origin ${{ github.sha }}
-            git checkout --force FETCH_HEAD
-          else
-            git clone --depth 1 https://git.ricardtech.top/RicardTech/PaperPlane-Next.git .
-            git checkout ${{ github.sha }} || true
-          fi
+          git clone --depth 1 --branch ${{ github.ref_name }} https://${{ github.token }}@git.ricardtech.top/RicardTech/PaperPlane-Next.git . || \
+          git clone --depth 1 https://${{ github.token }}@git.ricardtech.top/RicardTech/PaperPlane-Next.git .
 
       - name: Compile PaperPlane Next
         run: |
@@ -92,4 +87,11 @@ jobs:
 
           cd /tmp/pkg-dest
           tar --zstd -cf /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst * .PKGINFO
+          cp /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst /github/home/ || cp /tmp/paperplane-next-${PKGVER}-1-x86_64.pkg.tar.zst ./ || true
           ls -lh /tmp/*.pkg.tar.zst
+
+      - name: Upload Arch Package Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: paperplane-next-arch-package
+          path: /tmp/*.pkg.tar.zst
